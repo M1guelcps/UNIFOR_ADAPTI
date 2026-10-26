@@ -1,0 +1,39 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  
+}
+
+model Quest {
+  id            String   @id @default(uuid())
+  statement     String   @db.Text // O enunciado completo (pode ser grande no ENEM)
+  options       Json     // Salvamos as alternativas (A, B, C, D, E) como um array JSON
+  correctOption String   // O gabarito correto (ex: "C")
+  source        String?  // Ex: "ENEM 2023", "ENEM 2022 PPL"
+  area          String?  // Ex: "Ciências da Natureza", "Matemática"
+  
+  // ID do usuário que criou a questão (Pode ser nulo se for importada pelo sistema/API)
+  creatorId     String?  
+  
+  answers       Answer[] // Relacionamento com as respostas dos alunos
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Answer {
+  id        String   @id @default(uuid())
+  questId   String
+  userId    String   // O ID unificado do aluno (vem do Token JWT)
+  selected  String   // A alternativa que o aluno marcou (ex: "B")
+  isCorrect Boolean  // Se ele acertou ou não no momento em que respondeu
+  
+  createdAt DateTime @default(now())
+
+  quest     Quest    @relation(fields: [questId], references: [id])
+}

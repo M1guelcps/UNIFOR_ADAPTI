@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro | ADAPTI</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+  </head>
+  <body>
+    <div class="canto superior" aria-hidden="true"></div>
+    <div class="canto inferior" aria-hidden="true"></div>
+    <main class="caixa cadastro">
+      <img class="logo" src="../assets/logo-adapti.png" alt="ADAPTI" width="170">
+      <h1>Cadastro</h1>
+      <p class="subtitulo">Crie sua conta para começar</p>
+
+      <div id="mensagem-erro" style="color: #e74c3c; margin-bottom: 10px; display: none;"></div>
+      <div id="mensagem-sucesso" style="color: #2ecc71; margin-bottom: 10px; display: none;"></div>
+
+      <form id="form-cadastro">
+        <label for="nome">Nome</label>
+        <div class="campo">
+          <img src="../assets/usuario.svg" alt="">
+          <input id="nome" name="nome" type="text" placeholder="seu nome completo" autocomplete="name" required>
+        </div>
+
+        <label for="email">E-mail</label>
+        <div class="campo">
+          <img src="../assets/email.svg" alt="">
+          <input id="email" name="email" type="email" placeholder="seu@email.com" autocomplete="email" required>
+        </div>
+
+        <label for="senha">Senha</label>
+        <div class="campo">
+          <img src="../assets/cadeado.svg" alt="">
+          <input id="senha" name="senha" type="password" placeholder="sua senha" autocomplete="new-password" required>
+          <img class="olho" src="../assets/olho.svg" alt="Mostrar senha" style="cursor: pointer;">
+        </div>
+
+        <label for="confirmar-senha">Confirmar senha</label>
+        <div class="campo">
+          <img src="../assets/cadeado.svg" alt="">
+          <input id="confirmar-senha" name="confirmar-senha" type="password" placeholder="confirme sua senha" autocomplete="new-password" required>
+          <img class="olho" src="../assets/olho.svg" alt="Mostrar senha" style="cursor: pointer;">
+        </div>
+
+        <button type="submit">Criar Conta</button>
+      </form>
+    </main>
+
+    <script src="../JS/api.js"></script>
+    <script src="../JS/cadastro.js"></script>
+  </body>
+</html>

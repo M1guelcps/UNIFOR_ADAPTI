@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurar prática | ADAPTI</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+  </head>
+  <body class="app">
+    <div class="canto superior" aria-hidden="true"></div>
+    <div class="canto inferior" aria-hidden="true"></div>
+
+    <nav class="menu" aria-label="Menu principal">
+      <img class="menu-logo" src="../assets/logo-adapti.png" alt="ADAPTI">
+      <a class="menu-item" href="inicio.html">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 11.5h3V21h5.5v-6h3v6H19v-9.5h3L12 3z"/></svg>
+        <span class="menu-texto">Início</span>
+      </a>
+      <a class="menu-item ativo" href="configurar-pratica.html" aria-current="page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+        <span class="menu-texto">Praticar</span>
+      </a>
+      <a class="menu-item" href="desempenho.html">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="3" y="14" width="4" height="7" rx="1"/><rect x="10" y="9" width="4" height="12" rx="1"/><rect x="17" y="4" width="4" height="17" rx="1"/></svg>
+        <span class="menu-texto">Desempenho</span>
+      </a>
+    </nav>
+
+    <main class="painel">
+      <img class="logo topo-logo" src="../assets/logo-adapti.png" alt="ADAPTI">
+
+      <header class="saudacao centro">
+        <h1>Configurar prática</h1>
+        <p class="subtitulo">Escolha como deseja estudar</p>
+      </header>
+
+      <form class="configuracao" action="questao.html">
+        <fieldset>
+          <legend>Modo</legend>
+          <div class="opcoes duas">
+            <label class="opcao">
+              <input type="radio" name="modo" value="questoes" checked>
+              <span><img src="../assets/questoes.svg" alt="">Questões</span>
+            </label>
+            <label class="opcao">
+              <input type="radio" name="modo" value="simulado">
+              <span><img src="../assets/questoes.svg" alt="">Simulado</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Área</legend>
+          <div class="opcoes quatro">
+            <label class="opcao area">
+              <input type="radio" name="area" value="linguagens" checked>
+              <span><img src="../assets/livro.svg" alt="">Linguagens</span>
+            </label>
+            <label class="opcao area">
+              <input type="radio" name="area" value="humanas">
+              <span><img src="../assets/pessoas.svg" alt="">Humanas</span>
+            </label>
+            <label class="opcao area">
+              <input type="radio" name="area" value="natureza">
+              <span><img src="../assets/folha.svg" alt="">Natureza</span>
+            </label>
+            <label class="opcao area">
+              <input type="radio" name="area" value="matematica">
+              <span><img src="../assets/calculadora.svg" alt="">Matemática</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Ano do ENEM</legend>
+          <div class="opcoes quatro">
+            <label class="opcao pequena">
+              <input type="radio" name="ano" value="2023" checked>
+              <span>2023</span>
+            </label>
+            <label class="opcao pequena">
+              <input type="radio" name="ano" value="2022">
+              <span>2022</span>
+            </label>
+            <label class="opcao pequena">
+              <input type="radio" name="ano" value="2021">
+              <span>2021</span>
+            </label>
+            <label class="opcao pequena">
+              <input type="radio" name="ano" value="todos">
+              <span>Todos</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Quantidade</legend>
+          <div class="opcoes quatro">
+            <label class="opcao pequena">
+              <input type="radio" name="quantidade" value="5">
+              <span>5</span>
+            </label>
+            <label class="opcao pequena">
+              <input type="radio" name="quantidade" value="10" checked>
+              <span>10</span>
+            </label>
+            <label class="opcao pequena">
+              <input type="radio" name="quantidade" value="20">
+              <span>20</span>
+            </label>
+            <label class="opcao pequena">
+              <input type="radio" name="quantidade" value="45">
+              <span>45</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <label class="cronometro">
+          <img src="../assets/relogio.svg" alt="">
+          <span>Com cronômetro</span>
+          <input class="chave" type="checkbox" name="cronometro" checked>
+        </label>
+
+        <button type="submit" class="botao-principal">Começar agora</button>
+      </form>
+    </main>
+    <script src="../JS/questConfig.js"></script>
+  </body>
+</html>
