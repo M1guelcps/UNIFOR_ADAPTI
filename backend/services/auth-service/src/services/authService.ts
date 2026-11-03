@@ -4,7 +4,7 @@ import { prisma } from "../lib/prisma.js";
 
 export class AuthService {
   // 1. Rota de Cadastro: Recebe do Frontend, salva a senha e repassa ao User Service
-  static async register({ name, email, password, role }: Record<string, string>) {
+  static async register({ name, email, password }: Record<string, string>) {
     // A. Verifica e cria no banco local do Auth Service (adapti_auth)
     const userExists = await prisma.user.findUnique({ where: { email } });
     if (userExists) {
@@ -31,7 +31,8 @@ export class AuthService {
         id: newUser.id, // Repassamos o mesmo ID gerado aqui!
         name: newUser.name,
         email: newUser.email,
-        role: role || "STUDENT"
+        // Cadastro público é sempre aluno; professor/admin só via promoção pelo admin.
+        role: "STUDENT"
       }),
     });
 

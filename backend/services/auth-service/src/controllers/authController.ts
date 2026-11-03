@@ -4,14 +4,14 @@ import { AuthService } from "../services/authService.js";
 export class AuthController {
   static async register(req: Request, res: Response) {
     try {
-      const { name, email, password, role } = req.body;
+      const { name, email, password } = req.body;
 
       if (!name || !email || !password) {
         return res.status(400).json({ error: "Nome, e-mail e senha são obrigatórios." });
       }
 
       // Chama o AuthService para criar o usuário local e sincronizar com o User Service
-      const user = await AuthService.register({ name, email, password, role });
+      const user = await AuthService.register({ name, email, password });
 
       return res.status(201).json({
         message: "Usuário registrado com sucesso!",
