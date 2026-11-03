@@ -64,4 +64,24 @@ export class AnswerController {
       return res.status(500).json({ error: "Erro ao buscar métricas do aluno." });
     }
   }
+
+  static async getTeacherStats(req: AuthRequest, res: Response) {
+    try {
+      const data = await AnswerService.getTeacherStats(req.userId!);
+      return res.status(200).json(data);
+    } catch (error: any) {
+      console.error("[ANSWER TEACHER STATS ERROR]:", error);
+      return res.status(500).json({ error: "Erro ao buscar desempenho das suas questões." });
+    }
+  }
+
+  static async getAdminStats(req: AuthRequest, res: Response) {
+    try {
+      const data = await AnswerService.getAdminStats();
+      return res.status(200).json(data);
+    } catch (error: any) {
+      console.error("[ANSWER ADMIN STATS ERROR]:", error);
+      return res.status(500).json({ error: "Erro ao buscar estatísticas de respostas." });
+    }
+  }
 }

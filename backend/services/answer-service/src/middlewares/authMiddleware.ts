@@ -1,14 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
+export type Role = "STUDENT" | "TEACHER" | "ADMIN";
+
+const ROLES: Role[] = ["STUDENT", "TEACHER", "ADMIN"];
+
 export interface AuthRequest extends Request {
   userId?: string;
-}
-
-interface TokenPayload {
-  id: string;
-  email?: string;
-  name?: string;
+  userRole?: Role;
 }
 
 export const authMiddleware = (
@@ -56,8 +55,10 @@ export const authMiddleware = (
     }
 
     req.userId = decoded.id;
+    // Tokens antigos (sem role) são tratados como aluno.
+    req.userRole = ROLES.includes(decoded.role) ? decoded.role : "STUDENT";
 
-    console.log("[AUTH] Usuário autenticado:", req.userId);
+    console.log("[AUTH] Usuário autenticado:", req.userId, req.userRole);
 
     return next();
   } catch {
@@ -66,3 +67,16 @@ export const authMiddleware = (
     });
   }
 };
+
+// Use depois do authMiddleware: libera a rota só para os perfis informados.
+export const requireRole =
+  (...allowed: Role[]) =>
+  (req: AuthRequest, res: Response, next: NextFunction) => {
+    if (!req.userRole || !allowed.includes(req.userRole)) {
+      return res.status(403).json({
+        error: "Você não tem permissão para acessar este recurso.",
+      });
+    }
+
+    return next();
+  };

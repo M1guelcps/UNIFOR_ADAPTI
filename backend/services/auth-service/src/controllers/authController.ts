@@ -41,4 +41,36 @@ export class AuthController {
       return res.status(401).json({ error: error.message || "Credenciais inválidas." });
     }
   }
+
+  // Interna: chamada pelo User Service quando o admin edita nome/e-mail
+  static async internalUpdate(req: Request, res: Response) {
+    try {
+      const { name, email } = req.body ?? {};
+      const user = await AuthService.updateCredentials(String(req.params.id), { name, email });
+      return res.status(200).json(user);
+    } catch (error: any) {
+      return AuthController.internalError(error, res, "[AUTH INTERNAL UPDATE ERROR]:");
+    }
+  }
+
+  // Interna: chamada pelo User Service quando o admin exclui um usuário
+  static async internalDelete(req: Request, res: Response) {
+    try {
+      await AuthService.deleteCredentials(String(req.params.id));
+      return res.status(204).send();
+    } catch (error: any) {
+      return AuthController.internalError(error, res, "[AUTH INTERNAL DELETE ERROR]:");
+    }
+  }
+
+  private static internalError(error: any, res: Response, tag: string) {
+    if (error.message === "Usuário não encontrado.") {
+      return res.status(404).json({ error: error.message });
+    }
+    if (error.message === "E-mail já cadastrado.") {
+      return res.status(409).json({ error: error.message });
+    }
+    console.error(tag, error);
+    return res.status(500).json({ error: "Erro interno no Auth Service." });
+  }
 }
