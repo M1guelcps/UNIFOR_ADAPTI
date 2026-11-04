@@ -3,25 +3,41 @@ import { AuthService } from "../services/authService.js";
 
 export class AuthController {
   static async register(req: Request, res: Response) {
-    try {
-      const { name, email, password } = req.body;
+  try {
+    const { name, email, password, role } = req.body;
 
-      if (!name || !email || !password) {
-        return res.status(400).json({ error: "Nome, e-mail e senha são obrigatórios." });
-      }
-
-      // Chama o AuthService para criar o usuário local e sincronizar com o User Service
-      const user = await AuthService.register({ name, email, password });
-
-      return res.status(201).json({
-        message: "Usuário registrado com sucesso!",
-        user
+    if (!name || !email || !password || !role) {
+      return res.status(400).json({
+        error: "Nome, e-mail, senha e perfil são obrigatórios."
       });
-    } catch (error: any) {
-      console.error("[AUTH REGISTER ERROR]:", error.message);
-      return res.status(400).json({ error: error.message || "Erro ao registrar usuário." });
     }
+
+    if (!["STUDENT", "TEACHER", "ADMIN"].includes(role)) {
+      return res.status(400).json({
+        error: "Perfil inválido."
+      });
+    }
+
+    const user = await AuthService.register({
+      name,
+      email,
+      password,
+      role
+    });
+
+    return res.status(201).json({
+      message: "Usuário registrado com sucesso!",
+      user
+    });
+
+  } catch (error: any) {
+    console.error("[AUTH REGISTER ERROR]:", error.message);
+
+    return res.status(400).json({
+      error: error.message || "Erro ao registrar usuário."
+    });
   }
+}
 
   static async login(req: Request, res: Response) {
     try {

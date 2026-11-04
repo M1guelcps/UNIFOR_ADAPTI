@@ -4,49 +4,68 @@ import { prisma } from "../lib/prisma.js";
 
 export class AuthService {
   // 1. Rota de Cadastro: Recebe do Frontend, salva a senha e repassa ao User Service
-  static async register({ name, email, password }: Record<string, string>) {
-    // A. Verifica e cria no banco local do Auth Service (adapti_auth)
-    const userExists = await prisma.user.findUnique({ where: { email } });
-    if (userExists) {
-      throw new Error("E-mail já cadastrado.");
-    }
+  static async register({
+  name,
+  email,
+  password,
+  role
+}: {
+  name: string;
+  email: string;
+  password: string;
+  role: "STUDENT" | "TEACHER" |"ADMIN";
+}) {
+  // A. Verifica se o usuário já existe
+  const userExists = await prisma.user.findUnique({
+    where: { email }
+  });
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+  if (userExists) {
+    throw new Error("E-mail já cadastrado.");
+  }
 
-    const newUser = await prisma.user.create({
-      data: {
-        name,
-        email,
-        password: hashedPassword,
-      },
-    });
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-    // B. Repassa as informações para o User Service criar o perfil dele lá
-    const USER_SERVICE_URL = process.env.USER_SERVICE_URL || "http://localhost:3004";
-    
-    const syncResponse = await fetch(`${USER_SERVICE_URL}/users/internal/sync`, {
+  // B. Cria o usuário no Auth Service
+  const newUser = await prisma.user.create({
+    data: {
+      name,
+      email,
+      password: hashedPassword,
+    },
+  });
+
+  // C. Sincroniza com o User Service
+  const USER_SERVICE_URL =
+    process.env.USER_SERVICE_URL || "http://localhost:3004";
+
+  const syncResponse = await fetch(
+    `${USER_SERVICE_URL}/users/internal/sync`,
+    {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: newUser.id, // Repassamos o mesmo ID gerado aqui!
+        id: newUser.id,
         name: newUser.name,
         email: newUser.email,
-        // Cadastro público é sempre aluno; professor/admin só via promoção pelo admin.
-        role: "STUDENT"
+        role: role
       }),
-    });
-
-    if (!syncResponse.ok) {
-      // Em sistemas avançados, se falhar aqui, apagamos o usuário do Auth (Rollback)
-      throw new Error("Usuário criado no Auth, mas falhou ao sincronizar com o User Service.");
     }
+  );
 
-    return {
-      id: newUser.id,
-      name: newUser.name,
-      email: newUser.email,
-    };
+  if (!syncResponse.ok) {
+    throw new Error(
+      "Usuário criado no Auth, mas falhou ao sincronizar com o User Service."
+    );
   }
+
+  return {
+    id: newUser.id,
+    name: newUser.name,
+    email: newUser.email,
+    role
+  };
+}
 
   // 2. Rota de Login: Mantemos como ajustamos antes (chama o User Service para validar)
  // src/services/authService.ts (No Auth Service)
