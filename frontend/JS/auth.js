@@ -28,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("@adapti:user", JSON.stringify(data.user));
 
         
-        // Exemplo de redirecionamento futuro:
-        window.location.href = "inicio.html";
+        // Cada perfil cai na sua tela inicial
+        const destinos = { ADMIN: "admin.html", TEACHER: "professor.html" };
+        window.location.href = destinos[data.user.role] || "inicio.html";
       } catch (error) {
         msgErro.innerText = error.message;
         msgErro.style.display = "block";

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professor | ADAPTI</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+  </head>
+  <body class="app">
+    <div class="canto superior" aria-hidden="true"></div>
+    <div class="canto inferior" aria-hidden="true"></div>
+
+    <nav class="menu" aria-label="Menu do professor">
+      <img class="menu-logo" src="../assets/logo-adapti.png" alt="ADAPTI">
+      <a class="menu-item" href="#visao" data-aba="visao">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 2 11.5h3V21h5.5v-6h3v6H19v-9.5h3L12 3z"/></svg>
+        <span class="menu-texto">Início</span>
+      </a>
+      <a class="menu-item" href="#questoes" data-aba="questoes">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>
+        <span class="menu-texto">Minhas questões</span>
+      </a>
+      <a class="menu-item" href="#nova" data-aba="nova">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+        <span class="menu-texto">Nova questão</span>
+      </a>
+      <a class="menu-item" href="admin.html" id="link-admin" hidden>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5z"/></svg>
+        <span class="menu-texto">Administração</span>
+      </a>
+      <a class="menu-item" href="#" id="btn-logout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span class="menu-texto">Sair</span>
+      </a>
+    </nav>
+
+    <main class="painel">
+      <img class="logo topo-logo" src="../assets/logo-adapti.png" alt="ADAPTI">
+
+      <header class="saudacao">
+        <span class="selo selo-professor" id="selo-perfil">Professor</span>
+        <h1 id="user-name">Olá 👋</h1>
+        <p class="subtitulo">Crie questões e veja como seus alunos estão indo.</p>
+      </header>
+
+      <p id="aviso-global" class="aviso" role="status" hidden></p>
+
+      <!-- ===================== INÍCIO ===================== -->
+      <section id="aba-visao" class="painel-aba" aria-labelledby="titulo-visao">
+        <h2 id="titulo-visao" class="titulo-aba oculto">Início</h2>
+
+        <section class="atalhos" aria-label="Ações rápidas">
+          <a class="atalho roxo" href="#nova" data-ir="nova">
+            <span class="atalho-icone"><img src="../assets/editar.svg" alt=""></span>
+            <span class="atalho-titulo">Criar nova questão</span>
+            <span class="atalho-seta"><img src="../assets/seta.svg" alt=""></span>
+          </a>
+          <a class="atalho azul" href="#questoes" data-ir="questoes">
+            <span class="atalho-icone"><img src="../assets/livro.svg" alt=""></span>
+            <span class="atalho-titulo">Ver minhas questões</span>
+            <span class="atalho-seta"><img src="../assets/seta.svg" alt=""></span>
+          </a>
+        </section>
+
+        <section class="secao">
+          <h2>Desempenho dos alunos</h2>
+          <div class="estatisticas quatro">
+            <div class="estatistica">
+              <span class="estatistica-icone"><img src="../assets/questoes.svg" alt=""></span>
+              <p class="estatistica-nome">Questões criadas</p>
+              <p class="estatistica-valor" id="stat-questoes">–</p>
+            </div>
+            <div class="estatistica">
+              <span class="estatistica-icone"><img src="../assets/editar.svg" alt=""></span>
+              <p class="estatistica-nome">Respostas recebidas</p>
+              <p class="estatistica-valor" id="stat-respostas">–</p>
+            </div>
+            <div class="estatistica">
+              <span class="estatistica-icone"><img src="../assets/pessoas.svg" alt=""></span>
+              <p class="estatistica-nome">Alunos alcançados</p>
+              <p class="estatistica-valor" id="stat-alunos">–</p>
+            </div>
+            <div class="estatistica">
+              <span class="estatistica-icone"><img src="../assets/alvo.svg" alt=""></span>
+              <p class="estatistica-nome">Taxa de acerto</p>
+              <p class="estatistica-valor" id="stat-acerto">–</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="secao">
+          <h2>Questões com menor acerto</h2>
+          <article class="cartao">
+            <ul class="barras" id="lista-dificeis"><li class="vazio">Carregando…</li></ul>
+          </article>
+        </section>
+      </section>
+
+      <!-- ===================== MINHAS QUESTÕES ===================== -->
+      <section id="aba-questoes" class="painel-aba" aria-labelledby="titulo-questoes" hidden>
+        <div class="titulo-com-acao">
+          <h2 id="titulo-questoes" class="titulo-aba">Minhas questões</h2>
+          <button type="button" class="botao-pequeno principal" data-ir="nova">+ Nova questão</button>
+        </div>
+
+        <div class="tabela-wrap">
+          <table class="tabela">
+            <thead>
+              <tr>
+                <th scope="col">Enunciado</th>
+                <th scope="col">Área</th>
+                <th scope="col">Gabarito</th>
+                <th scope="col">Respostas</th>
+                <th scope="col">Acerto</th>
+                <th scope="col"><span class="oculto">Ações</span></th>
+              </tr>
+            </thead>
+            <tbody id="tabela-questoes">
+              <tr><td colspan="6" class="vazio">Carregando…</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="paginacao" id="paginacao-questoes"></div>
+      </section>
+
+      <!-- ===================== NOVA / EDITAR ===================== -->
+      <section id="aba-nova" class="painel-aba" aria-labelledby="titulo-nova" hidden>
+        <h2 id="titulo-nova" class="titulo-aba">Nova questão</h2>
+
+        <form id="form-questao" class="form-painel" novalidate>
+          <label for="enunciado">Enunciado</label>
+          <textarea id="enunciado" class="area-texto" rows="6" placeholder="Escreva o enunciado da questão…" required></textarea>
+
+          <div class="linha-dupla">
+            <div>
+              <label for="area">Área</label>
+              <select id="area" class="seletor">
+                <option value="linguagens">Linguagens</option>
+                <option value="humanas">Ciências Humanas</option>
+                <option value="natureza">Ciências da Natureza</option>
+                <option value="matematica">Matemática</option>
+              </select>
+            </div>
+            <div>
+              <label for="fonte">Fonte</label>
+              <div class="campo">
+                <img src="../assets/livro.svg" alt="">
+                <input id="fonte" type="text" placeholder="Ex.: Lista 3 – Funções" value="Autoral">
+              </div>
+            </div>
+          </div>
+
+          <fieldset class="alternativas-form">
+            <legend>Alternativas <span class="nota">(mínimo 2; marque a correta)</span></legend>
+            <div id="lista-alternativas"></div>
+          </fieldset>
+
+          <p id="erro-form" class="aviso erro" role="alert" hidden></p>
+
+          <div class="navegacao">
+            <button type="button" class="botao-secundario" id="btn-cancelar">Limpar</button>
+            <button type="submit" id="btn-salvar">Salvar questão</button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <script src="../JS/sessao.js"></script>
+    <script src="../JS/professor.js"></script>
+  </body>
+</html>

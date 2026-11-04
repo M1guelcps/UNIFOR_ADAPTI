@@ -24,6 +24,14 @@ const ANSWER_SERVICE_URL =
 const USER_SERVICE_URL =
   process.env.USER_SERVICE_URL || "http://localhost:3004";
 
+// Rotas internas (usadas só entre serviços) não ficam expostas.
+// Precisa vir antes dos proxies, senão o proxy encaminha primeiro.
+const blockInternal = (req: Request, res: Response) => {
+  res.status(403).json({ error: "Rota interna: acesso não permitido pelo Gateway." });
+};
+app.use("/users/internal", blockInternal);
+app.use("/auth/internal", blockInternal);
+
 // Auth Service
 app.use(
   "/auth",
