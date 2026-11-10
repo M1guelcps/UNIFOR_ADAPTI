@@ -18,7 +18,10 @@ const adapter = new PrismaMariaDb({
   password: decodeURIComponent(url.password),
   database: url.pathname.slice(1),
   connectionLimit: 5,
-  connectTimeout: 5000
+  connectTimeout: 5000,
+  // MySQL 8 usa caching_sha2_password: sem isto, o conector mariadb falha
+  // (ER_CANNOT_RETRIEVE_RSA_KEY) sempre que o servidor acabou de reiniciar.
+  allowPublicKeyRetrieval: true
 });
 
 export const prisma = new PrismaClient({ adapter });
