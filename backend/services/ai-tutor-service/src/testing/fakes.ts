@@ -1,5 +1,5 @@
 import type { FeedbackEntry, FeedbackRepository } from "../ports/feedbackRepository.js";
-import type { TutorModel } from "../ports/tutorModel.js";
+import type { ModelCompletion, TutorModel } from "../ports/tutorModel.js";
 import type { TutorRequest } from "../schemas/tutorRequest.js";
 import type { TutorResponse } from "../schemas/tutorResponse.js";
 
@@ -47,12 +47,12 @@ export class FakeTutorModel implements TutorModel {
     return this.contents.length;
   }
 
-  async generateFeedback(content: string): Promise<unknown> {
+  async generateFeedback(content: string): Promise<ModelCompletion> {
     this.contents.push(content);
     const next = this.script.shift();
     if (next === undefined) throw new Error("FakeTutorModel sem resposta roteirizada.");
     if (next instanceof Error) throw next;
-    return next;
+    return { data: next, model: this.name, usage: {} };
   }
 }
 
