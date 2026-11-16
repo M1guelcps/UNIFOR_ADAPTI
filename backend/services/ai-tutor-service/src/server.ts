@@ -3,6 +3,7 @@ import { GoogleGenAI } from "@google/genai";
 import { GeminiTutorModel } from "./adapters/geminiTutorModel.js";
 import { LimitedTutorModel } from "./adapters/limitedTutorModel.js";
 import { PrismaFeedbackRepository } from "./adapters/prismaFeedbackRepository.js";
+import { PrismaMaterialCatalog } from "./adapters/prismaMaterialCatalog.js";
 import { createApp } from "./app.js";
 import { loadConfig } from "./config/env.js";
 import { ConcurrencyLimiter } from "./lib/concurrencyLimiter.js";
@@ -28,7 +29,7 @@ const tutorModel = new LimitedTutorModel(
   geminiModel,
   new ConcurrencyLimiter(config.geminiMaxConcurrency, config.geminiMaxConcurrency * QUEUE_PER_SLOT)
 );
-const tutorService = new TutorService(tutorModel, new PrismaFeedbackRepository(prisma));
+const tutorService = new TutorService(tutorModel, new PrismaFeedbackRepository(prisma), new PrismaMaterialCatalog(prisma));
 
 const app = createApp({ tutorService, internalApiKey: config.internalApiKey });
 
