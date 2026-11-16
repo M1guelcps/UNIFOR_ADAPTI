@@ -18,6 +18,9 @@ export interface ExplainResult {
 const MAX_MODEL_ATTEMPTS = 2;
 
 export class TutorService {
+  // Gerações em andamento por hash: pedidos idênticos simultâneos esperam a mesma chamada ao Gemini.
+  private readonly inFlight = new Map<string, Promise<TutorResponse>>();
+
   constructor(
     private readonly model: TutorModel,
     private readonly repository: FeedbackRepository
@@ -26,19 +29,37 @@ export class TutorService {
   /**
    * Devolve a tutoria da questão: do cache quando existe, senão gerada pelo modelo e então guardada.
    * O cache é otimização, não requisito: se o banco falhar, a tutoria é entregue mesmo assim.
+   * Pedidos idênticos que chegam enquanto o primeiro ainda gera compartilham a mesma chamada (cached: true).
    * @throws TutorRateLimitedError | TutorUnavailableError | TutorInvalidOutputError
    */
   async explain(request: TutorRequest): Promise<ExplainResult> {
     const contentHash = computeContentHash(request);
 
+    const pending = this.inFlight.get(contentHash);
+    if (pending) return { feedback: await pending, cached: true };
+
     const stored = await this.findStoredFeedback(contentHash);
     if (stored) return { feedback: stored, cached: true };
 
-    const generated = await this.generateValidFeedback(buildQuestionContent(request));
+    // Depois do último await acima não há brecha: quem chegar a seguir encontra a geração registrada.
+    const racing = this.inFlight.get(contentHash);
+    if (racing) return { feedback: await racing, cached: true };
+
+    const generation = this.generateAndStore(contentHash, request);
+    this.inFlight.set(contentHash, generation);
+    try {
+      return { feedback: await generation, cached: false };
+    } finally {
+      this.inFlight.delete(contentHash);
+    }
+  }
+
+  private async generateAndStore(contentHash: string, request: TutorRequest): Promise<TutorResponse> {
+    const { generated, model } = await this.generateValidFeedback(buildQuestionContent(request));
     const feedback = composeTutorResponse(request, generated);
 
-    await this.storeFeedback(contentHash, request, feedback);
-    return { feedback, cached: false };
+    await this.storeFeedback(contentHash, request, feedback, model);
+    return feedback;
   }
 
   private async findStoredFeedback(contentHash: string): Promise<TutorResponse | null> {
@@ -50,14 +71,15 @@ export class TutorService {
     }
   }
 
-  private async storeFeedback(contentHash: string, request: TutorRequest, feedback: TutorResponse): Promise<void> {
+  private async storeFeedback(contentHash: string, request: TutorRequest, feedback: TutorResponse, model: string): Promise<void> {
     try {
       await this.repository.save({
         contentHash,
         questaoId: request.questaoId,
         respostaAluno: request.respostaAluno,
         promptVersion: PROMPT_VERSION,
-        model: this.model.name,
+        // O modelo que de fato respondeu (pode ser o reserva), não o configurado como principal.
+        model,
         feedback,
       });
     } catch (error) {
@@ -65,12 +87,13 @@ export class TutorService {
     }
   }
 
-  private async generateValidFeedback(content: string): Promise<ModelFeedback> {
+  private async generateValidFeedback(content: string): Promise<{ generated: ModelFeedback; model: string }> {
     let lastError: TutorInvalidOutputError | undefined;
 
     for (let attempt = 1; attempt <= MAX_MODEL_ATTEMPTS; attempt++) {
       try {
-        return parseModelFeedback(await this.model.generateFeedback(content));
+        const completion = await this.model.generateFeedback(content);
+        return { generated: parseModelFeedback(completion.data), model: completion.model };
       } catch (error) {
         if (!(error instanceof TutorInvalidOutputError)) throw error;
         lastError = error;
