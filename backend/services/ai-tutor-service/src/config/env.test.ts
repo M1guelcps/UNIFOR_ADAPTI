@@ -41,3 +41,38 @@ describe("loadConfig", () => {
     );
   });
 });
+
+describe("loadConfig: variáveis de robustez", () => {
+  it("usa 4 chamadas simultâneas por padrão e deixa reserva e raciocínio indefinidos", () => {
+    const config = loadConfig(validEnv);
+
+    assert.equal(config.geminiMaxConcurrency, 4);
+    assert.equal(config.geminiFallbackModel, undefined);
+    assert.equal(config.geminiThinkingLevel, undefined);
+  });
+
+  it("trata variáveis opcionais vazias (como no .env.example) como ausentes", () => {
+    const config = loadConfig({ ...validEnv, GEMINI_FALLBACK_MODEL: "", GEMINI_THINKING_LEVEL: "  " });
+
+    assert.equal(config.geminiFallbackModel, undefined);
+    assert.equal(config.geminiThinkingLevel, undefined);
+  });
+
+  it("lê o modelo reserva, o nível de raciocínio (sem diferenciar maiúsculas) e o limite", () => {
+    const config = loadConfig({
+      ...validEnv,
+      GEMINI_FALLBACK_MODEL: "modelo-reserva",
+      GEMINI_THINKING_LEVEL: "low",
+      GEMINI_MAX_CONCURRENCY: "8",
+    });
+
+    assert.equal(config.geminiFallbackModel, "modelo-reserva");
+    assert.equal(config.geminiThinkingLevel, "LOW");
+    assert.equal(config.geminiMaxConcurrency, 8);
+  });
+
+  it("rejeita nível de raciocínio desconhecido e limite fora da faixa", () => {
+    assert.throws(() => loadConfig({ ...validEnv, GEMINI_THINKING_LEVEL: "extremo" }), /GEMINI_THINKING_LEVEL/);
+    assert.throws(() => loadConfig({ ...validEnv, GEMINI_MAX_CONCURRENCY: "0" }), /GEMINI_MAX_CONCURRENCY/);
+  });
+});
