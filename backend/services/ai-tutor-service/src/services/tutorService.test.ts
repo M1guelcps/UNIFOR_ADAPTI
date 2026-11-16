@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { computeContentHash } from "../domain/contentHash.js";
+import { computeContentHash, computePromptFingerprint } from "../domain/contentHash.js";
 import {
   TutorInvalidOutputError,
   TutorRateLimitedError,
   TutorUnavailableError,
 } from "../domain/tutorErrors.js";
+import type { ModelCompletion, TutorModel } from "../ports/tutorModel.js";
 import { PROMPT_VERSION } from "../prompts/tutorPrompt.js";
 import { FakeTutorModel, InMemoryFeedbackRepository, validModelOutput, validRequest } from "../testing/fakes.js";
 import { TutorService } from "./tutorService.js";
@@ -155,6 +156,117 @@ describe("TutorService.explain", () => {
 
     assert.equal(feedback.resultado, "incorreto");
     assert.equal(cached, false);
+  });
+});
+
+/** Modelo que só responde quando `release()` é chamado: permite chegar pedidos enquanto a geração está aberta. */
+class GatedModel implements TutorModel {
+  readonly name = "principal";
+  calls = 0;
+  private readonly gates: Array<(outcome: ModelCompletion | Error) => void> = [];
+
+  constructor(private readonly respondingModel = "principal") {}
+
+  generateFeedback(): Promise<ModelCompletion> {
+    this.calls += 1;
+    return new Promise((resolve, reject) => {
+      this.gates.push((outcome) => (outcome instanceof Error ? reject(outcome) : resolve(outcome)));
+    });
+  }
+
+  release(outcome?: Error): void {
+    this.gates.shift()?.(outcome ?? { data: validModelOutput(), model: this.respondingModel, usage: {} });
+  }
+}
+
+const tick = () => new Promise<void>((resolve) => setImmediate(resolve));
+
+describe("TutorService: pedidos idênticos simultâneos", () => {
+  it("agrupa em uma única chamada ao modelo e marca o segundo como cached", async () => {
+    const model = new GatedModel();
+    const service = new TutorService(model, new InMemoryFeedbackRepository());
+
+    const first = service.explain(validRequest());
+    await tick();
+    const second = service.explain(validRequest({ questaoId: "6f1c3f0e-5b7a-4c1d-9a55-1c2d3e4f5a6b" }));
+    await tick();
+    model.release();
+    const [a, b] = await Promise.all([first, second]);
+
+    assert.equal(model.calls, 1);
+    assert.equal(a.cached, false);
+    assert.equal(b.cached, true);
+    assert.deepEqual(a.feedback, b.feedback);
+  });
+
+  it("não agrupa questões diferentes", async () => {
+    const model = new GatedModel();
+    const service = new TutorService(model, new InMemoryFeedbackRepository());
+
+    const first = service.explain(validRequest({ respostaAluno: "C" }));
+    const second = service.explain(validRequest({ respostaAluno: "D" }));
+    await tick();
+    model.release();
+    model.release();
+    await Promise.all([first, second]);
+
+    assert.equal(model.calls, 2);
+  });
+
+  it("propaga a mesma falha a quem esperava e libera o hash para a próxima tentativa", async () => {
+    const model = new GatedModel();
+    const service = new TutorService(model, new InMemoryFeedbackRepository());
+
+    const first = service.explain(validRequest());
+    await tick();
+    const second = service.explain(validRequest());
+    await tick();
+    model.release(new TutorUnavailableError());
+    const outcomes = await Promise.allSettled([first, second]);
+
+    assert.deepEqual(outcomes.map((outcome) => outcome.status), ["rejected", "rejected"]);
+    assert.equal(model.calls, 1);
+
+    const retry = service.explain(validRequest());
+    await tick();
+    model.release();
+    assert.equal((await retry).cached, false);
+    assert.equal(model.calls, 2);
+  });
+});
+
+describe("TutorService: modelo gravado no cache", () => {
+  it("grava o modelo que de fato respondeu (o reserva), não o principal", async () => {
+    const model = new GatedModel("modelo-reserva");
+    const repository = new InMemoryFeedbackRepository();
+    const service = new TutorService(model, repository);
+    const request = validRequest();
+
+    const pending = service.explain(request);
+    await tick();
+    model.release();
+    await pending;
+
+    assert.equal(repository.entries.get(computeContentHash(request))?.model, "modelo-reserva");
+  });
+});
+
+describe("computePromptFingerprint", () => {
+  const schema = { type: "object", properties: { a: { type: "string" } } };
+
+  it("é estável para o mesmo prompt e schema", () => {
+    assert.equal(computePromptFingerprint("prompt", schema), computePromptFingerprint("prompt", schema));
+  });
+
+  it("muda quando o texto do prompt muda, sem depender de PROMPT_VERSION", () => {
+    assert.notEqual(computePromptFingerprint("prompt", schema), computePromptFingerprint("prompt editado", schema));
+  });
+
+  it("muda quando o JSON Schema da resposta muda", () => {
+    assert.notEqual(
+      computePromptFingerprint("prompt", schema),
+      computePromptFingerprint("prompt", { ...schema, required: ["a"] })
+    );
   });
 });
 
