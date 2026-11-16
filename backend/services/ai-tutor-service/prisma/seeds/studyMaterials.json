@@ -1,0 +1,149 @@
+[
+  {
+    "title": "Porcentagem",
+    "description": "Conteúdo do Brasil Escola sobre porcentagem.",
+    "url": "https://brasilescola.uol.com.br/matematica/porcentagem.htm",
+    "subject": "matematica",
+    "topic": "Porcentagem"
+  },
+  {
+    "title": "Regra de três simples",
+    "description": "Conteúdo do Brasil Escola sobre regra de três simples.",
+    "url": "https://brasilescola.uol.com.br/matematica/regra-tres-simples.htm",
+    "subject": "matematica",
+    "topic": "Razão, proporção e regra de três"
+  },
+  {
+    "title": "Razão",
+    "description": "Conteúdo do Brasil Escola sobre razão entre grandezas.",
+    "url": "https://brasilescola.uol.com.br/matematica/razao.htm",
+    "subject": "matematica",
+    "topic": "Razão, proporção e regra de três"
+  },
+  {
+    "title": "Proporção",
+    "description": "Conteúdo do Brasil Escola sobre proporção.",
+    "url": "https://brasilescola.uol.com.br/matematica/proporcao.htm",
+    "subject": "matematica",
+    "topic": "Razão, proporção e regra de três"
+  },
+  {
+    "title": "Juros compostos",
+    "description": "Conteúdo do Brasil Escola sobre juros compostos.",
+    "url": "https://brasilescola.uol.com.br/matematica/juros-compostos.htm",
+    "subject": "matematica",
+    "topic": "Matemática financeira"
+  },
+  {
+    "title": "Geometria plana",
+    "description": "Conteúdo do Brasil Escola sobre geometria plana.",
+    "url": "https://brasilescola.uol.com.br/matematica/geometria-plana.htm",
+    "subject": "matematica",
+    "topic": "Geometria"
+  },
+  {
+    "title": "Interpretação textual",
+    "description": "Conteúdo do Brasil Escola sobre interpretação de texto.",
+    "url": "https://brasilescola.uol.com.br/redacao/a-interpretacao-textual.htm",
+    "subject": "linguagens",
+    "topic": "Interpretação de texto"
+  },
+  {
+    "title": "Funções da linguagem",
+    "description": "Conteúdo do Brasil Escola sobre as funções da linguagem.",
+    "url": "https://brasilescola.uol.com.br/gramatica/funcoes-linguagem.htm",
+    "subject": "linguagens",
+    "topic": "Funções da linguagem"
+  },
+  {
+    "title": "Figuras de linguagem",
+    "description": "Conteúdo do Brasil Escola sobre figuras de linguagem.",
+    "url": "https://brasilescola.uol.com.br/gramatica/figuras-linguagem.htm",
+    "subject": "linguagens",
+    "topic": "Figuras de linguagem"
+  },
+  {
+    "title": "Gêneros textuais",
+    "description": "Conteúdo do Brasil Escola sobre gêneros textuais.",
+    "url": "https://brasilescola.uol.com.br/redacao/generos-textuais.htm",
+    "subject": "linguagens",
+    "topic": "Gêneros textuais"
+  },
+  {
+    "title": "Variação linguística",
+    "description": "Conteúdo do Brasil Escola sobre variação linguística.",
+    "url": "https://brasilescola.uol.com.br/gramatica/variacoes-linguisticas.htm",
+    "subject": "linguagens",
+    "topic": "Variação linguística"
+  },
+  {
+    "title": "Revolução Industrial",
+    "description": "Conteúdo do Brasil Escola sobre a Revolução Industrial.",
+    "url": "https://brasilescola.uol.com.br/historiag/revolucao-industrial.htm",
+    "subject": "ciencias-humanas",
+    "topic": "Revolução Industrial"
+  },
+  {
+    "title": "Ditadura militar no Brasil",
+    "description": "Conteúdo do Brasil Escola sobre a ditadura militar no Brasil.",
+    "url": "https://brasilescola.uol.com.br/historiab/ditadura-militar.htm",
+    "subject": "ciencias-humanas",
+    "topic": "Ditadura militar no Brasil"
+  },
+  {
+    "title": "Geografia urbana",
+    "description": "Conteúdo do Brasil Escola sobre geografia urbana.",
+    "url": "https://brasilescola.uol.com.br/geografia/geografia-urbana.htm",
+    "subject": "ciencias-humanas",
+    "topic": "Geografia urbana"
+  },
+  {
+    "title": "Globalização",
+    "description": "Conteúdo do Brasil Escola sobre globalização.",
+    "url": "https://brasilescola.uol.com.br/geografia/globalizacao.htm",
+    "subject": "ciencias-humanas",
+    "topic": "Globalização"
+  },
+  {
+    "title": "Iluminismo",
+    "description": "Conteúdo do Brasil Escola sobre o Iluminismo.",
+    "url": "https://brasilescola.uol.com.br/historiag/iluminismo.htm",
+    "subject": "ciencias-humanas",
+    "topic": "Iluminismo"
+  },
+  {
+    "title": "Cinemática",
+    "description": "Conteúdo do Brasil Escola sobre cinemática.",
+    "url": "https://brasilescola.uol.com.br/fisica/introducao-cinematica.htm",
+    "subject": "ciencias-natureza",
+    "topic": "Cinemática"
+  },
+  {
+    "title": "Eletrodinâmica",
+    "description": "Conteúdo do Brasil Escola sobre eletrodinâmica.",
+    "url": "https://brasilescola.uol.com.br/fisica/eletrodinamica.htm",
+    "subject": "ciencias-natureza",
+    "topic": "Eletricidade"
+  },
+  {
+    "title": "Termoquímica",
+    "description": "Conteúdo do Brasil Escola sobre termoquímica.",
+    "url": "https://brasilescola.uol.com.br/quimica/termoquimica.htm",
+    "subject": "ciencias-natureza",
+    "topic": "Termoquímica"
+  },
+  {
+    "title": "Ecologia",
+    "description": "Conteúdo do Brasil Escola sobre ecologia.",
+    "url": "https://brasilescola.uol.com.br/biologia/ecologia.htm",
+    "subject": "ciencias-natureza",
+    "topic": "Ecologia"
+  },
+  {
+    "title": "Genética",
+    "description": "Conteúdo do Brasil Escola sobre genética.",
+    "url": "https://brasilescola.uol.com.br/biologia/genetica.htm",
+    "subject": "ciencias-natureza",
+    "topic": "Genética"
+  }
+]
