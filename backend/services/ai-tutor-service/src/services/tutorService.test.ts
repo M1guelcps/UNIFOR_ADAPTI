@@ -8,7 +8,7 @@ import {
 } from "../domain/tutorErrors.js";
 import type { ModelCompletion, TutorModel } from "../ports/tutorModel.js";
 import { PROMPT_VERSION } from "../prompts/tutorPrompt.js";
-import { FakeTutorModel, InMemoryFeedbackRepository, validModelOutput, validRequest } from "../testing/fakes.js";
+import { FakeTutorModel, InMemoryFeedbackRepository, InMemoryMaterialCatalog, validModelOutput, validRequest } from "../testing/fakes.js";
 import { TutorService } from "./tutorService.js";
 
 function build(...script: unknown[]) {
@@ -251,6 +251,144 @@ describe("TutorService: modelo gravado no cache", () => {
   });
 });
 
+describe("TutorService: catálogo de materiais", () => {
+  const porcentagem1 = { disciplina: "matematica", assunto: "Porcentagem", titulo: "Porcentagem passo a passo", url: "https://exemplo.test/porcentagem", descricao: "Cálculo de porcentagens." };
+  const porcentagem2 = { disciplina: "matematica", assunto: "Porcentagem", titulo: "Aumentos e descontos", url: "https://exemplo.test/descontos", descricao: "Aumentos e descontos sucessivos." };
+  const regraDeTres = { disciplina: "matematica", assunto: "Regra de três", titulo: "Regra de três", url: "https://exemplo.test/regra-de-tres", descricao: "Grandezas proporcionais." };
+
+  // A disciplina chega do Answer Service como "Matemática" ou "matematica": o catálogo normaliza as duas.
+  const mathRequest = (overrides = {}) => validRequest({ disciplina: "Matemática", ...overrides });
+
+  function buildWithCatalog(modelOutput: unknown, materials = [porcentagem1, porcentagem2, regraDeTres]) {
+    const model = new FakeTutorModel(modelOutput, validModelOutput());
+    const repository = new InMemoryFeedbackRepository();
+    const catalog = new InMemoryMaterialCatalog(materials);
+    return { model, repository, catalog, service: new TutorService(model, repository, catalog) };
+  }
+
+  it("oferece ao modelo só os assuntos do catálogo da disciplina e devolve os materiais dos assuntos escolhidos", async () => {
+    const { model, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] });
+
+    const { feedback } = await service.explain(mathRequest());
+
+    // Ordem estável: por assunto e, dentro dele, por título ("Aumentos…" vem antes de "Porcentagem…").
+    assert.deepEqual(feedback.materiais.map((m) => m.url), [porcentagem2.url, porcentagem1.url]);
+    assert.match(model.contents[0] ?? "", /"assuntosDoCatalogo": \[\s*"Porcentagem",\s*"Regra de três"\s*\]/);
+  });
+
+  it("descarta assuntos que não estão na lista (inclusive links inventados) e aceita grafia sem acento", async () => {
+    const { service } = buildWithCatalog({
+      ...validModelOutput(),
+      assuntos: ["Assunto inventado", "https://falso.example", "regra de tres", "REGRA DE TRÊS"],
+    });
+
+    const { feedback } = await service.explain(mathRequest());
+
+    assert.deepEqual(feedback.materiais.map((m) => m.url), [regraDeTres.url]);
+  });
+
+  it("corta em 3 assuntos mesmo que o modelo devolva mais", async () => {
+    const topics = ["Assunto A", "Assunto B", "Assunto C", "Assunto D"];
+    const materials = topics.map((assunto, i) => ({ ...porcentagem1, assunto, titulo: assunto, url: `https://exemplo.test/${i}` }));
+    const { repository, service } = buildWithCatalog({ ...validModelOutput(), assuntos: topics }, materials);
+    const request = mathRequest();
+
+    const { feedback } = await service.explain(request);
+
+    assert.deepEqual(feedback.materiais.map((m) => m.titulo), ["Assunto A", "Assunto B", "Assunto C"]);
+    assert.equal(repository.entries.get(computeContentHash(request, topics))?.assuntos.length, 3);
+  });
+
+  it("devolve materiais vazios quando o modelo não escolhe assunto algum", async () => {
+    const { service } = buildWithCatalog({ ...validModelOutput(), assuntos: [] });
+
+    assert.deepEqual((await service.explain(mathRequest())).feedback.materiais, []);
+  });
+
+  it("limita a 5 materiais, em ordem estável", async () => {
+    const many = Array.from({ length: 8 }, (_, i) => ({ ...porcentagem1, titulo: `Material ${i}`, url: `https://exemplo.test/m${i}` }));
+    const { service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] }, many);
+
+    const { feedback } = await service.explain(mathRequest());
+
+    assert.deepEqual(feedback.materiais.map((m) => m.titulo), ["Material 0", "Material 1", "Material 2", "Material 3", "Material 4"]);
+  });
+
+  it("grava no cache só os assuntos, nunca os links", async () => {
+    const { repository, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] });
+    const request = mathRequest();
+
+    await service.explain(request);
+
+    const saved = repository.entries.get(computeContentHash(request, ["Porcentagem", "Regra de três"]));
+    assert.deepEqual(saved?.assuntos, ["Porcentagem"]);
+    assert.deepEqual(saved?.feedback.materiais, []);
+  });
+
+  it("resolve os materiais no catálogo também quando a tutoria vem do cache: material novo aparece sem gerar de novo", async () => {
+    const { model, catalog, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] }, [porcentagem1, regraDeTres]);
+
+    const first = await service.explain(mathRequest());
+    catalog.add({ ...porcentagem2 });
+    const second = await service.explain(mathRequest());
+
+    assert.equal(second.cached, true);
+    assert.equal(model.calls, 1);
+    assert.equal(first.feedback.materiais.length, 1);
+    assert.equal(second.feedback.materiais.length, 2);
+  });
+
+  it("gera de novo quando a lista de assuntos do catálogo muda (o modelo pode escolher o assunto novo)", async () => {
+    const { model, catalog, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] }, [porcentagem1]);
+
+    await service.explain(mathRequest());
+    catalog.add({ ...regraDeTres });
+    const second = await service.explain(mathRequest());
+
+    assert.equal(second.cached, false);
+    assert.equal(model.calls, 2);
+  });
+
+  it("entrega a tutoria sem links quando o catálogo falha ao buscar os materiais", async () => {
+    const { catalog, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] });
+    catalog.failOnFindMaterials = true;
+
+    const { feedback } = await service.explain(mathRequest());
+
+    assert.equal(feedback.resultado, "incorreto");
+    assert.deepEqual(feedback.materiais, []);
+  });
+
+  it("entrega a tutoria sem oferecer assuntos quando o catálogo falha ao listá-los", async () => {
+    const { model, catalog, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] });
+    catalog.failOnListTopics = true;
+
+    const { feedback } = await service.explain(mathRequest());
+
+    assert.deepEqual(feedback.materiais, []);
+    assert.equal(model.contents[0]?.includes("assuntosDoCatalogo"), false);
+  });
+
+  it("não oferece assuntos nem consulta materiais quando a questão não tem disciplina", async () => {
+    const { model, catalog, service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] });
+
+    const { feedback } = await service.explain(validRequest({ disciplina: undefined }));
+
+    assert.deepEqual(feedback.materiais, []);
+    assert.equal(model.contents[0]?.includes("assuntosDoCatalogo"), false);
+    assert.equal(catalog.findCalls, 0);
+  });
+
+  it("não mistura disciplinas: matemática não recebe materiais de linguagens", async () => {
+    const linguagens = { disciplina: "linguagens", assunto: "Porcentagem", titulo: "Intruso", url: "https://exemplo.test/intruso", descricao: "x" };
+    const { service } = buildWithCatalog({ ...validModelOutput(), assuntos: ["Porcentagem"] }, [porcentagem1, linguagens]);
+
+    const { feedback } = await service.explain(mathRequest());
+
+    assert.deepEqual(feedback.materiais.map((m) => m.url), [porcentagem1.url]);
+  });
+});
+
 describe("computePromptFingerprint", () => {
   const schema = { type: "object", properties: { a: { type: "string" } } };
 
@@ -273,6 +411,11 @@ describe("computePromptFingerprint", () => {
 describe("computeContentHash", () => {
   it("é estável para a mesma questão", () => {
     assert.equal(computeContentHash(validRequest()), computeContentHash(validRequest()));
+  });
+
+  it("muda quando a lista de assuntos do catálogo muda", () => {
+    assert.notEqual(computeContentHash(validRequest(), ["Porcentagem"]), computeContentHash(validRequest(), ["Porcentagem", "Regra de três"]));
+    assert.notEqual(computeContentHash(validRequest(), ["Porcentagem"]), computeContentHash(validRequest()));
   });
 
   it("muda quando o texto de uma alternativa muda", () => {
