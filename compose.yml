@@ -1,0 +1,157 @@
+services:
+
+  # ==========================================
+  # BANCO DE DADOS
+  # ==========================================
+  mysql:
+    image: docker.io/library/mysql:8.4
+    restart: unless-stopped
+
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_APP_PASSWORD: ${MYSQL_APP_PASSWORD}
+
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./deploy/mysql/init.sh:/docker-entrypoint-initdb.d/01-init.sh:ro,Z
+
+    networks:
+      - backend
+
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p\"$${MYSQL_ROOT_PASSWORD}\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 40s
+
+  # ==========================================
+  # AUTH SERVICE
+  # ==========================================
+  auth-service:
+    image: localhost/adapti-auth-service:latest
+    restart: unless-stopped
+
+    env_file:
+      - ./deploy/env/app.env
+
+    environment:
+      PORT: "3001"
+      DATABASE_URL: "mysql://adapti_app:${MYSQL_APP_PASSWORD}@mysql:3306/adapti_auth"
+      USER_SERVICE_URL: "http://user-service:3004"
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: "1d"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - backend
+
+  # ==========================================
+  # USER SERVICE
+  # ==========================================
+  user-service:
+    image: localhost/adapti-user-service:latest
+    restart: unless-stopped
+
+    env_file:
+      - ./deploy/env/app.env
+
+    environment:
+      PORT: "3004"
+      DATABASE_URL: "mysql://adapti_app:${MYSQL_APP_PASSWORD}@mysql:3306/adapti_user"
+      AUTH_SERVICE_URL: "http://auth-service:3001"
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: "1d"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - backend
+
+  # ==========================================
+  # QUEST SERVICE
+  # ==========================================
+  quest-service:
+    image: localhost/adapti-quest-service:latest
+    restart: unless-stopped
+
+    env_file:
+      - ./deploy/env/app.env
+
+    environment:
+      PORT: "3002"
+      DATABASE_URL: "mysql://adapti_app:${MYSQL_APP_PASSWORD}@mysql:3306/adapti_quest"
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: "1d"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - backend
+
+  # ==========================================
+  # ANSWER SERVICE
+  # ==========================================
+  answer-service:
+    image: localhost/adapti-answer-service:latest
+    restart: unless-stopped
+
+    env_file:
+      - ./deploy/env/app.env
+
+    environment:
+      PORT: "3003"
+      DATABASE_URL: "mysql://adapti_app:${MYSQL_APP_PASSWORD}@mysql:3306/adapti_quest"
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRES_IN: "1d"
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    networks:
+      - backend
+
+  # ==========================================
+  # API GATEWAY
+  # ==========================================
+  gateway:
+    image: localhost/adapti-gateway:latest
+    restart: unless-stopped
+
+    environment:
+      PORT: "3000"
+      AUTH_SERVICE_URL: "http://auth-service:3001"
+      USER_SERVICE_URL: "http://user-service:3004"
+      QUEST_SERVICE_URL: "http://quest-service:3002"
+      ANSWER_SERVICE_URL: "http://answer-service:3003"
+
+    depends_on:
+      - auth-service
+      - user-service
+      - quest-service
+      - answer-service
+
+    ports:
+      - "127.0.0.1:3000:3000"
+
+    networks:
+      - backend
+
+# ==========================================
+# REDE E VOLUME
+# ==========================================
+networks:
+  backend:
+    driver: bridge
+    internal: true
+
+volumes:
+  mysql_data:

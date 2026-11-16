@@ -1,13 +1,11 @@
 import "dotenv/config";
 import express, { Request, Response, NextFunction } from "express";
-import cors from "cors";
 import morgan from "morgan";
 import { answerRoutes } from "./routes/answerRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 3003;
 
-app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 

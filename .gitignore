@@ -1,8 +1,22 @@
-# Dependências e artefatos de build
-node_modules/
-dist/
+# Dependências
+**/node_modules/
 
-# Segredos: cada pessoa cria o seu .env a partir do .env.example do serviço
+# Build
+**/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos temporários
+.DS_Store
+Thumbs.db
+
+# Segredos: cada pessoa cria o seu .env a partir do .env.example do serviço.
+# Vale para QUALQUER pasta (não só a raiz): o deploy lê as variáveis de deploy/env/ e do ambiente.
 .env
 .env.*
 !.env.example
+
+# Configuração privada da implantação
+/deploy/env/

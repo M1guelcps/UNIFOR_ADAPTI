@@ -6,7 +6,13 @@ import { createProxyMiddleware } from "http-proxy-middleware";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://frontend-react-chi-sand.vercel.app",
+    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 app.get("/health", (req: Request, res: Response) => {
   res.json({ status: "OK", service: "api-gateway" });
