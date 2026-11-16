@@ -2,6 +2,7 @@
   "extends": "./tsconfig.json",
   "exclude": [
     "src/**/*.test.ts",
+    "src/**/*.dbtest.ts",
     "src/testing/**"
   ],
   "compilerOptions": {
