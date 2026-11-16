@@ -1,22 +1,28 @@
 import { Prisma } from "@prisma/client";
 import type { PrismaClient } from "@prisma/client";
-import type { FeedbackEntry, FeedbackRepository } from "../ports/feedbackRepository.js";
+import { z } from "zod";
+import type { FeedbackEntry, FeedbackRepository, StoredFeedback } from "../ports/feedbackRepository.js";
 import { TutorResponseSchema } from "../schemas/tutorResponse.js";
-import type { TutorResponse } from "../schemas/tutorResponse.js";
 
 const UNIQUE_CONSTRAINT_VIOLATION = "P2002";
+
+const AssuntosSchema = z.array(z.string());
 
 export class PrismaFeedbackRepository implements FeedbackRepository {
   constructor(private readonly prisma: PrismaClient) {}
 
-  async find(contentHash: string): Promise<TutorResponse | null> {
+  async find(contentHash: string): Promise<StoredFeedback | null> {
     const row = await this.prisma.tutorFeedback.findUnique({ where: { contentHash } });
     if (!row) return null;
 
     // Se o formato público evoluiu desde que o registro foi gravado, trata como "não encontrado"
     // e a tutoria é gerada de novo, em vez de entregar um JSON fora do contrato.
     const parsed = TutorResponseSchema.safeParse(row.feedback);
-    return parsed.success ? parsed.data : null;
+    if (!parsed.success) return null;
+
+    // Linhas gravadas antes do catálogo têm assuntos nulo: valem como "nenhum assunto".
+    const assuntos = AssuntosSchema.safeParse(row.assuntos);
+    return { feedback: parsed.data, assuntos: assuntos.success ? assuntos.data : [] };
   }
 
   async save(entry: FeedbackEntry): Promise<void> {
@@ -29,6 +35,7 @@ export class PrismaFeedbackRepository implements FeedbackRepository {
           promptVersion: entry.promptVersion,
           model: entry.model,
           feedback: entry.feedback,
+          assuntos: entry.assuntos,
         },
       });
     } catch (error) {
