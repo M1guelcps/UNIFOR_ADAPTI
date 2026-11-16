@@ -15,13 +15,20 @@ describe("buildModelResponseJsonSchema (aprendizado)", () => {
 
   it("descreve um objeto com exatamente os campos que o modelo deve gerar", () => {
     assert.equal(schema.type, "object");
-    assert.deepEqual(Object.keys(schema.properties ?? {}).sort(), ["analiseAluno", "contextualizacao", "explicacao", "recomendacoes"]);
-    assert.deepEqual([...(schema.required ?? [])].sort(), ["analiseAluno", "contextualizacao", "explicacao", "recomendacoes"]);
+    assert.deepEqual(Object.keys(schema.properties ?? {}).sort(), ["analiseAluno", "assuntos", "contextualizacao", "explicacao", "recomendacoes"]);
+    assert.deepEqual([...(schema.required ?? [])].sort(), ["analiseAluno", "assuntos", "contextualizacao", "explicacao", "recomendacoes"]);
   });
 
   it("não expõe ao modelo os campos que o servidor decide (resultado, materiais)", () => {
     assert.equal("resultado" in (schema.properties ?? {}), false);
     assert.equal("materiais" in (schema.properties ?? {}), false);
+  });
+
+  it("pede os assuntos como lista de textos", () => {
+    const assuntos = (schema.properties as Record<string, { type?: string; items?: { type?: string } }>).assuntos;
+
+    assert.equal(assuntos?.type, "array");
+    assert.equal(assuntos?.items?.type, "string");
   });
 
   it("não envia a palavra-chave $schema", () => {
@@ -40,6 +47,17 @@ describe("ModelFeedbackSchema", () => {
 
     assert.equal(ModelFeedbackSchema.safeParse(blank).success, false);
     assert.equal(ModelFeedbackSchema.safeParse(noRecommendations).success, false);
+  });
+
+  it("aceita assuntos vazios (sem catálogo) e exige o campo", () => {
+    const { assuntos: _omitted, ...withoutAssuntos } = validModelOutput();
+
+    assert.equal(ModelFeedbackSchema.safeParse({ ...validModelOutput(), assuntos: [] }).success, true);
+    assert.equal(ModelFeedbackSchema.safeParse(withoutAssuntos).success, false);
+  });
+
+  it("tolera mais de 3 assuntos: quem corta é o servidor, para um campo secundário não derrubar a tutoria", () => {
+    assert.equal(ModelFeedbackSchema.safeParse({ ...validModelOutput(), assuntos: ["a", "b", "c", "d"] }).success, true);
   });
 });
 
