@@ -1,4 +1,4 @@
-cat > .gitignore <<'EOF'
+
 # Dependências
 **/node_modules/
 
