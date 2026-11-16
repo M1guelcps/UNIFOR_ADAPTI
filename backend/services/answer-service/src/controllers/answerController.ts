@@ -1,6 +1,15 @@
 import { Response } from "express";
 import { AnswerService } from "../services/answerService.js";
 import { AuthRequest } from "../middlewares/authMiddleware.js";
+import {
+  AnswerNotFoundError,
+  TutorQuestionInvalidError,
+  TutorRateLimitedError,
+  TutorUnavailableError,
+} from "../lib/tutorErrors.js";
+
+// Usado quando o tutor não informa quanto tempo esperar.
+const DEFAULT_RETRY_AFTER_SECONDS = 30;
 
 export class AnswerController {
   static async submit(req: AuthRequest, res: Response) {
@@ -48,6 +57,52 @@ export class AnswerController {
     }
   }
   
+  // Explicação do tutor para uma resposta do próprio aluno. Falhas do tutor NÃO afetam a resposta já
+  // registrada: o frontend pode mostrar a mensagem e deixar o aluno tentar de novo depois.
+  static async tutor(req: AuthRequest, res: Response) {
+    const userId = req.userId;
+
+    if (!userId) {
+      return res.status(401).json({ error: "Usuário não autenticado." });
+    }
+
+    const { answerId } = req.params;
+
+    if (typeof answerId !== "string" || !answerId.trim()) {
+      return res.status(400).json({ error: "answerId deve ser uma string não vazia." });
+    }
+
+    try {
+      const result = await AnswerService.getTutorFeedback(answerId, userId);
+      return res.status(200).json(result);
+    } catch (error: unknown) {
+      return AnswerController.respondWithTutorError(error, res);
+    }
+  }
+
+  private static respondWithTutorError(error: unknown, res: Response) {
+    if (error instanceof AnswerNotFoundError) {
+      return res.status(404).json({ error: error.message });
+    }
+
+    if (error instanceof TutorQuestionInvalidError) {
+      return res.status(422).json({ error: error.message });
+    }
+
+    if (error instanceof TutorRateLimitedError) {
+      res.setHeader("Retry-After", String(error.retryAfterSeconds ?? DEFAULT_RETRY_AFTER_SECONDS));
+      return res.status(429).json({ error: "O tutor está com muitas solicitações. Tente novamente em instantes." });
+    }
+
+    console.error("[ANSWER TUTOR ERROR]:", error instanceof Error ? `${error.name}: ${error.message}` : error);
+
+    if (error instanceof TutorUnavailableError) {
+      return res.status(503).json({ error: "A explicação não está disponível agora. Sua resposta continua registrada." });
+    }
+
+    return res.status(500).json({ error: "Não foi possível gerar a explicação." });
+  }
+
   static async getMetrics(req: AuthRequest, res: Response) {
     try {
       const userId = req.userId;
