@@ -7,7 +7,7 @@ const TituloEConteudo = z.object({ titulo: Texto, conteudo: Texto });
 /**
  * O que o Gemini PRODUZ. Fica de fora tudo o que o servidor já sabe com certeza:
  * - `resultado` e a letra analisada: derivam de `respostaAluno === respostaCorreta`;
- * - `materiais`: só o catálogo do Adapti pode fornecer links.
+ * - `materiais`: só o catálogo do Adapti (tabela study_materials) pode fornecer links.
  * Assim o modelo não tem como corrigir a questão nem inventar uma URL: o campo simplesmente não existe.
  */
 export const ModelFeedbackSchema = z.object({
@@ -15,6 +15,11 @@ export const ModelFeedbackSchema = z.object({
   analiseAluno: z.object({ conteudo: Texto }),
   contextualizacao: TituloEConteudo,
   recomendacoes: z.array(Texto).min(1).max(5),
+  // Assuntos escolhidos da lista `assuntosDoCatalogo` enviada com a questão (vazio quando não há lista).
+  // O servidor descarta tudo o que não estiver na lista e corta em 3: o modelo escolhe assuntos, nunca links.
+  // Sem `.max(3)` de propósito: é só enriquecimento, e um 4º item não deve derrubar a tutoria inteira
+  // (rejeitar aqui gastaria uma nova chamada ao Gemini ou viraria HTTP 502).
+  assuntos: z.array(z.string()),
 });
 
 export type ModelFeedback = z.infer<typeof ModelFeedbackSchema>;
@@ -24,6 +29,8 @@ const MaterialSchema = z.object({
   url: z.url(),
   descricao: Texto,
 });
+
+export type Material = z.infer<typeof MaterialSchema>;
 
 /** Contrato PÚBLICO devolvido ao Answer Service (mesmo formato descrito em docs/IaPlanServico). */
 export const TutorResponseSchema = z.object({
