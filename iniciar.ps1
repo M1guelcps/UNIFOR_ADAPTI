@@ -8,6 +8,7 @@ $partes = @(
   @{ Nome = "quest-service (3002)";  Pasta = "backend\services\quest-service" },
   @{ Nome = "answer-service (3003)"; Pasta = "backend\services\answer-service" },
   @{ Nome = "user-service (3004)";   Pasta = "backend\services\user-service" },
+  @{ Nome = "ai-tutor-service (3005)"; Pasta = "backend\services\ai-tutor-service" },
   @{ Nome = "gateway (3000)";        Pasta = "gateway" },
   @{ Nome = "frontend React (5173)"; Pasta = "frontend-react" }
 )
