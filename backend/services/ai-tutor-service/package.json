@@ -14,7 +14,8 @@
     "eval:prompt": "tsx scripts/evaluatePrompt.ts",
     "compare:models": "tsx scripts/compareModels.ts",
     "smoke:contract": "tsx scripts/contractSmoke.ts",
-    "e2e:gateway": "tsx scripts/e2eGateway.ts"
+    "e2e:gateway": "tsx scripts/e2eGateway.ts",
+    "materials:seed": "tsx scripts/seedStudyMaterials.ts"
   },
   "dependencies": {
     "@google/genai": "^3.3.0",
