@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Cache das tutorias geradas pelo Gemini.
+// A explicação depende só do conteúdo da questão e da alternativa marcada, nunca de quem respondeu,
+// então a mesma linha atende todos os alunos e não guarda nenhum dado pessoal.
+model TutorFeedback {
+  id            String   @id @default(uuid())
+  // sha256 de PROMPT_VERSION + conteúdo da questão: muda sozinho se a questão for editada ou o prompt evoluir.
+  contentHash   String   @unique @db.VarChar(64)
+  // Só para rastreabilidade e depuração; não participa da chave do cache.
+  questaoId     String   @db.VarChar(64)
+  respostaAluno String   @db.VarChar(8)
+  feedback      Json
+  // Assuntos do catálogo que o modelo escolheu para esta tutoria. Guardados para os materiais serem
+  // resolvidos a cada resposta (inclusive a partir do cache), sem pedir uma nova tutoria ao Gemini.
+  assuntos      Json?
+  promptVersion String   @db.VarChar(32)
+  model         String   @db.VarChar(128)
+  createdAt     DateTime @default(now())
+
+  @@index([questaoId])
+}
+
+// Catálogo de materiais de estudo do Adapti (etapa 5 do doc). Só esta tabela fornece links:
+// o modelo apenas escolhe assuntos de uma lista fechada e nunca vê nem gera URLs.
+// Cadastro: prisma/seeds/studyMaterials.json + `npm run materials:seed`.
+model StudyMaterial {
+  id          String   @id @default(uuid())
+  title       String   @db.VarChar(255)
+  description String   @db.Text
+  url         String   @unique @db.VarChar(500)
+  // Disciplina normalizada (minúsculas, sem acento, hífens), igual ao campo `disciplina` do contrato: "matematica".
+  subject     String   @db.VarChar(100)
+  // Assunto exatamente como é oferecido ao modelo na lista do catálogo: "Porcentagem".
+  topic       String   @db.VarChar(150)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([subject, topic, active])
+  @@map("study_materials")
+}

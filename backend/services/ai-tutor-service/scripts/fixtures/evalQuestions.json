@@ -1,0 +1,450 @@
+[
+  {
+    "id": "q1",
+    "tag": "enunciado-com-imagem",
+    "area": "linguagens",
+    "source": "ENEM 2022",
+    "statement": "**TEXTO I**\n\n![](https://enem.dev/2022/questions/38/951f4c93-65de-4b4b-af99-7d63a81bfee9.jpg)\n\nEL GRECO. **Laocoonte**. Óleo sobre tela, 1,37cm x 1,72cm.\n\nNational Gallery of Art, Washington, Estados Unidos, circa 1610-  \n1614\\. Disponível em: https://images.nga.gov. Acesso em: 28 jun  \n2019 (adaptado).\n\n**TEXTO II**\n\nEssa impressionante obra apresenta o sacerdote Laocoonte sendo punido pelos deuses por tentar alertar os troianos da ameaça do Cavalo de Troia, que escondia um grupo de soldados gregos. Enviadas pelos deuses, serpentes marinhas são vistas matando Laocoonte e seus dois filhos como forma de punição.\n\nKAY, A. In: FARTHING, S. (Org.). **Tudo sobre arte**.  \nRio de Janeiro: Sextante, 2011 (adaptado).",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Representação da nudez masculina."
+      },
+      {
+        "letter": "B",
+        "text": "Distorção ao representar a figura humana."
+      },
+      {
+        "letter": "C",
+        "text": "Evocação de um fato da cultura clássica grega."
+      },
+      {
+        "letter": "D",
+        "text": "Presença do tema da morte como punição da família."
+      },
+      {
+        "letter": "E",
+        "text": "Utilização da perspectiva para integrar os diferentes planos."
+      }
+    ],
+    "correctOption": "B",
+    "chosen": "A",
+    "referenciaV1": {
+      "resultado": "incorreto",
+      "explicacao": {
+        "titulo": "O Estilo Distintivo de El Greco",
+        "conteudo": "A obra 'Laocoonte' é um exemplo emblemático do estilo de El Greco, caracterizado pelo Maneirismo. A principal marca dessa fase é a distorção intencional das figuras humanas, que aparecem alongadas, com proporções irreais e contorcidas, conferindo uma carga dramática e espiritual intensa à cena, em vez de buscar o realismo anatômico clássico."
+      },
+      "analiseAluno": {
+        "alternativa": "A",
+        "conteudo": "Você notou a presença da nudez, que é um elemento comum na arte clássica, mas essa característica não é o que define a singularidade da obra de El Greco. O foco do artista nesta tela não é a representação anatômica do corpo, mas sim a deformação expressiva das formas para transmitir o sofrimento e o drama do mito. Tente observar como os membros e troncos das figuras são alongados de forma antinatural."
+      },
+      "contextualizacao": {
+        "titulo": "O Maneirismo na Arte",
+        "conteudo": "O Maneirismo surgiu no final do Renascimento como uma reação aos ideais de equilíbrio, harmonia e proporção perfeita. Os artistas maneiristas, como El Greco, passaram a valorizar a subjetividade, a emoção e a elegância artificial, utilizando cores vibrantes, composições complexas e o alongamento das figuras para expressar sentimentos profundos e tensão espiritual."
+      },
+      "recomendacoes": [
+        "Pesquise sobre as principais características do movimento artístico Maneirista.",
+        "Compare obras de El Greco com obras de artistas renascentistas como Michelangelo para notar as diferenças de proporção.",
+        "Estude o conceito de 'expressividade' na arte e como ele se sobrepõe ao realismo em certos períodos históricos.",
+        "Leia sobre o mito de Laocoonte na mitologia grega para compreender a carga dramática da cena."
+      ],
+      "materiais": []
+    }
+  },
+  {
+    "id": "q2",
+    "tag": "texto:linguagens",
+    "area": "linguagens",
+    "source": "ENEM 2022",
+    "statement": "Era o êxodo da seca de 1898. Uma ressurreição de cemitérios antigos — esqueletos redivivos, com o aspecto terroso e o fedor das covas podres.\n\nOs fantasmas estropiados como que iam dançando, de tão trôpegos e trêmulos, num passo arrastado de quem leva as pernas, em vez de ser levado por elas.\n\nAndavam devagar, olhando para trás, como quem quer voltar. Não tinham pressa em chegar, porque não sabiam aonde iam. Expulsos de seu paraíso por espadas de fogo, iam, ao acaso, em descaminhos, no arrastão dos maus fados.\n\nFugiam do sol e o sol guiava-os nesse forçado nomadismo.\n\nAdelgaçados na magreira cômica, cresciam, como se o vento os levantasse. E os braços afinados desciam-lhes aos joelhos, de mãos abanando.\n\nVinham escoteiros. Menos os hidrópicos — de ascite consecutiva à alimentação tóxica — com os fardos das barrigas alarmantes.\n\nNão tinham sexo, nem idade, nem condição nenhuma. Eram os retirantes. Nada mais.\n\nALMEIDA, J. A. **A bagaceira**. Rio de Janeiro: J. Olympio, 1978.",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Desenho cru da realidade dramática dos retirantes."
+      },
+      {
+        "letter": "B",
+        "text": "Indefinição dos espaços para efeito de generalização."
+      },
+      {
+        "letter": "C",
+        "text": "Análise psicológica da reação dos personagens à seca."
+      },
+      {
+        "letter": "D",
+        "text": "Engajamento político do narrador ante as desigualdades."
+      },
+      {
+        "letter": "E",
+        "text": "Contemplação lírica da paisagem transformada em alegoria."
+      }
+    ],
+    "correctOption": "A",
+    "chosen": "B",
+    "referenciaV1": {
+      "resultado": "incorreto",
+      "explicacao": {
+        "titulo": "Retrato da miséria humana",
+        "conteudo": "A alternativa correta é a A porque o texto de José Américo de Almeida utiliza uma linguagem expressiva e crua para descrever a condição física e existencial dos retirantes. O autor emprega metáforas fortes, como 'esqueletos redivivos' e 'fedor das covas podres', para enfatizar o sofrimento extremo, a desumanização e a precariedade absoluta daqueles que fogem da seca, apresentando um retrato realista e dramático da situação."
+      },
+      "analiseAluno": {
+        "alternativa": "B",
+        "conteudo": "Você escolheu a alternativa B, mas o texto não busca a indefinição dos espaços para generalizar; pelo contrário, ele é bastante específico ao situar o drama no contexto histórico do êxodo da seca de 1898. O foco do autor não é esconder o local ou o tempo, mas sim dar contornos visíveis e chocantes à tragédia humana que ocorre ali. Tente focar na carga emocional e nas descrições físicas detalhadas que o autor usa para chocar o leitor."
+      },
+      "contextualizacao": {
+        "titulo": "O Regionalismo de 30",
+        "conteudo": "O fragmento pertence à obra 'A Bagaceira', marco inicial do Romance de 30 no Brasil. Esse movimento literário caracterizou-se pelo regionalismo, focando em problemas sociais, econômicos e políticos do país, especialmente a seca no Nordeste. A literatura dessa época buscava denunciar a desigualdade e a miséria, utilizando uma linguagem direta e, muitas vezes, brutal para expor a realidade dos marginalizados."
+      },
+      "recomendacoes": [
+        "Estude as características do Romance de 30 no Brasil.",
+        "Pesquise sobre o conceito de 'literatura de denúncia social'.",
+        "Analise como o uso de metáforas e hipérboles contribui para a construção de imagens dramáticas em textos literários.",
+        "Leia sobre o contexto histórico da seca e o fenômeno dos retirantes na literatura brasileira."
+      ],
+      "materiais": []
+    }
+  },
+  {
+    "id": "q3",
+    "tag": "texto:ciencias-humanas",
+    "area": "ciencias-humanas",
+    "source": "ENEM 2022",
+    "statement": "Eu estava pagando o sapateiro e conversando com um preto que estava lendo um jornal. Ele estava revoltado com um guarda civil que espancou um preto e amarrou numa árvore. O guarda civil é branco. E há certos brancos que transforma o preto em bode expiatório. Quem sabe se guarda civil ignora que já foi extinta a escravidão e ainda estamos em regime de chibata?\n\nJESUS, C. M. **Quarto de despejo: diário de uma favelada**. São Paulo: Ática, 2014.",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Racismo estrutural."
+      },
+      {
+        "letter": "B",
+        "text": "Desemprego latente."
+      },
+      {
+        "letter": "C",
+        "text": "Concentração de renda."
+      },
+      {
+        "letter": "D",
+        "text": "Exclusão informacional."
+      },
+      {
+        "letter": "E",
+        "text": "Precariedade da educação."
+      }
+    ],
+    "correctOption": "A",
+    "chosen": "B",
+    "referenciaV1": {
+      "resultado": "incorreto",
+      "explicacao": {
+        "titulo": "A persistência do racismo na sociedade brasileira",
+        "conteudo": "O texto de Carolina Maria de Jesus denuncia a violência policial e o preconceito racial, evidenciando como a população negra continua sendo alvo de abusos e tratada como 'bode expiatório'. A autora questiona a permanência de práticas análogas à escravidão, o que caracteriza o racismo estrutural: um sistema onde o preconceito está enraizado nas instituições e nas relações sociais, perpetuando desigualdades históricas."
+      },
+      "analiseAluno": {
+        "alternativa": "B",
+        "conteudo": "Você escolheu 'Desemprego latente', mas o texto não trata de questões econômicas ou de mercado de trabalho. O foco do relato é a violência física e a discriminação racial sofrida por um homem negro. Ao ler textos como este, tente identificar o conflito central: aqui, trata-se de uma denúncia sobre a desigualdade racial e a brutalidade policial, e não sobre a falta de ocupação profissional."
+      },
+      "contextualizacao": {
+        "titulo": "O conceito de Racismo Estrutural",
+        "conteudo": "O racismo estrutural refere-se ao conjunto de práticas, hábitos e falas embutidos nos costumes e nas instituições que privilegiam um grupo racial em detrimento de outros. No Brasil, esse conceito ajuda a explicar por que, mesmo após a abolição formal da escravidão, a população negra ainda enfrenta barreiras sistêmicas, violência desproporcional e marginalização social."
+      },
+      "recomendacoes": [
+        "Estude o conceito de racismo estrutural na obra de Silvio Almeida.",
+        "Pesquise sobre a história da abolição da escravidão no Brasil e suas consequências sociais.",
+        "Leia mais sobre a literatura de Carolina Maria de Jesus e seu papel como cronista social.",
+        "Analise o conceito de violência institucional no contexto brasileiro.",
+        "Reflita sobre como o preconceito se manifesta nas relações cotidianas e nas políticas públicas."
+      ],
+      "materiais": []
+    }
+  },
+  {
+    "id": "q4",
+    "tag": "complemento",
+    "area": "linguagens",
+    "source": "ENEM 2022",
+    "statement": "**Urgência emocional**\n\nSe tudo é para ontem, se a vida engata uma primeira e sai em disparada, se não há mais tempo para paradas estratégicas, caímos fatalmente no vício de querer que os amores sejam igualmente resolvidos num átimo de segundo. Temos pressa para ouvir “eu te amo”. Não vemos a hora de que fiquem estabelecidas as regras de convívio: somos namorados, ficantes, casados, amantes? Urgência emocional. Uma cilada. Associamos diversas palavras ao AMOR: paixão, romance, sexo, adrenalina, palpitação. Esquecemos, no entanto, da palavra que viabiliza esse sentimento: “paciência”. Amor sem paciência não vinga. Amor não pode ser mastigado e engolido com emergência, com fome desesperada. É uma refeição que pode durar uma vida.\n\nMEDEIROS, M. Disponível em: http:/porumavidasimples.blogspot.com.br. Acesso em: 20 ago. 2017 (adaptado).",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Impessoalização ao longo do texto, como em: “se não há mais tempo”."
+      },
+      {
+        "letter": "B",
+        "text": "Construção de uma atmosfera de urgência, em palavras como: “pressa”."
+      },
+      {
+        "letter": "C",
+        "text": "Repetição de uma determinada estrutura sintática, como em: “Se tudo é para ontem”."
+      },
+      {
+        "letter": "D",
+        "text": "Ênfase no emprego da hipérbole, como em: “uma refeição que pode durar uma vida”."
+      },
+      {
+        "letter": "E",
+        "text": "Emprego de metáforas, como em: “a vida engata uma primeira e sai em disparada”."
+      }
+    ],
+    "correctOption": "E",
+    "chosen": "A",
+    "referenciaV1": {
+      "resultado": "incorreto",
+      "explicacao": {
+        "titulo": "O uso de metáforas no texto",
+        "conteudo": "A alternativa correta é a E porque o autor utiliza a metáfora 'a vida engata uma primeira e sai em disparada' para comparar a velocidade da vida moderna ao ato de dirigir um carro, ilustrando a pressa e a falta de controle que as pessoas sentem no cotidiano. Essa figura de linguagem é essencial para tornar a ideia abstrata de 'urgência' mais concreta e visual para o leitor."
+      },
+      "analiseAluno": {
+        "alternativa": "A",
+        "conteudo": "Você escolheu a alternativa A, mas o texto não apresenta uma impessoalização. Pelo contrário, o autor utiliza frequentemente a primeira pessoa do plural ('caímos', 'temos', 'esquecemos'), o que aproxima o leitor e cria um tom de confissão ou reflexão compartilhada. Para evitar esse erro, observe sempre os verbos e pronomes: quando o autor se inclui no grupo, ele está buscando engajamento, não distanciamento."
+      },
+      "contextualizacao": {
+        "titulo": "Figuras de linguagem e recursos expressivos",
+        "conteudo": "As figuras de linguagem, como a metáfora, são recursos que ampliam o sentido das palavras, permitindo que o autor estabeleça relações de semelhança entre conceitos distintos. Elas são fundamentais em textos argumentativos e crônicas para conferir expressividade, emoção e clareza a temas complexos, como o comportamento humano e as relações afetivas."
+      },
+      "recomendacoes": [
+        "Estude as principais figuras de linguagem: metáfora, metonímia, hipérbole e antítese.",
+        "Pratique a identificação de marcas de subjetividade (uso de verbos em 1ª pessoa) em textos opinativos.",
+        "Analise como a escolha de palavras (vocabulário) constrói o tom de um texto (irônico, reflexivo, urgente).",
+        "Leia crônicas contemporâneas para identificar o uso de recursos expressivos no cotidiano."
+      ],
+      "materiais": []
+    }
+  },
+  {
+    "id": "q5",
+    "tag": "complemento",
+    "area": "linguagens",
+    "source": "ENEM 2022",
+    "statement": "**A escrava**\n\n– Admira-me —, disse uma senhora de sentimentos sinceramente abolicionistas —; faz-me até pasmar como se possa sentir, e expressar sentimentos escravocratas, no presente século, no século dezenove! A moral religiosa e a moral cívica aí se erguem, e falam bem alto esmagando a hidra que envenena a família no mais sagrado santuário seu, e desmoraliza, e avilta a nação inteira! Levantai os olhos ao Gólgota, ou percorrei-os em torno da sociedade, e dizei-me:\n\n— Para que se deu em sacrifício, o Homem Deus, que ali exalou seu derradeiro alento? Ah! Então não era verdade que seu sangue era o resgate do homem! É então uma mentira abominável ter esse sangue comprado a liberdade!? E depois, olhai a sociedade… Não vedes o abutre que a corrói constantemente!… Não sentis a desmoralização que a enerva, o cancro que a destrói?\n\nPor qualquer modo que encaremos a escravidão, ela é, e sempre será um grande mal. Dela a decadência do comércio; porque o comércio e a lavoura caminham de mãos dadas, e o escravo não pode fazer florescer a lavoura; porque o seu trabalho é forçado.\n\nREIS, M. F. **Úrsula outras obras**. Brasília: Câmara dos Deputados, 2018",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Revelar a imposição de crenças religiosas a pessoas escravizadas."
+      },
+      {
+        "letter": "B",
+        "text": "Apontar a hipocrisia do discurso conservador na defesa da escravidão."
+      },
+      {
+        "letter": "C",
+        "text": "Sugerir práticas de violência física e moral em nome do progresso material."
+      },
+      {
+        "letter": "D",
+        "text": "Relacionar o declínio da produção agrícola e comercial a questões raciais."
+      },
+      {
+        "letter": "E",
+        "text": "Ironizar o comportamento dos proprietários de terra na exploração do trabalho."
+      }
+    ],
+    "correctOption": "B",
+    "chosen": "A",
+    "referenciaV1": {
+      "resultado": "incorreto",
+      "explicacao": {
+        "titulo": "Crítica à contradição escravocrata",
+        "conteudo": "A alternativa correta é a B porque o texto utiliza argumentos morais, religiosos e cívicos para expor a incoerência de se defender a escravidão em pleno século XIX. A autora questiona como alguém pode professar uma fé cristã (que prega a liberdade e o sacrifício de Cristo pelo homem) enquanto sustenta um sistema que avilta a dignidade humana, evidenciando a hipocrisia desse discurso."
+      },
+      "analiseAluno": {
+        "alternativa": "A",
+        "conteudo": "Você escolheu a alternativa A, mas o texto não foca na imposição de crenças aos escravizados. Na verdade, a autora utiliza a religião como uma ferramenta argumentativa para confrontar os proprietários de escravos, apontando que a prática da escravidão contradiz os valores cristãos que eles mesmos deveriam seguir. O foco é a contradição moral de quem defende a escravidão, e não o processo de catequização ou imposição religiosa sobre os escravizados."
+      },
+      "contextualizacao": {
+        "titulo": "Literatura abolicionista no século XIX",
+        "conteudo": "A literatura abolicionista brasileira do século XIX, como a obra de Maria Firmina dos Reis, utilizava a escrita como forma de denúncia social. Autores dessa vertente frequentemente recorriam a argumentos humanitários, religiosos e econômicos para demonstrar que a escravidão era um entrave ao desenvolvimento moral e material da nação, buscando sensibilizar a elite intelectual e política da época."
+      },
+      "recomendacoes": [
+        "Estude o contexto histórico do movimento abolicionista no Brasil.",
+        "Analise as características da literatura de denúncia social no século XIX.",
+        "Pesquise sobre a obra 'Úrsula' de Maria Firmina dos Reis e sua importância pioneira.",
+        "Pratique a identificação de argumentos e teses em textos dissertativos e literários.",
+        "Reflita sobre como diferentes autores utilizam a religião como base para argumentos éticos."
+      ],
+      "materiais": []
+    }
+  },
+  {
+    "id": "q6",
+    "tag": "complemento",
+    "area": "linguagens",
+    "source": "ENEM 2022",
+    "statement": "**PALAVRA**  \nAs gramáticas classificam as palavras em substantivo, adjetivo, verbo, advérbio, conjunção, pronome, numeral, artigo e preposição. Os poetas classificam as palavras pela alma porque gostam de brincar com elas, e para brincar com elas é preciso ter intimidade primeiro. É a alma da palavra que define, explica, ofende ou elogia, se coloca entre o significante e o significado para dizer o que quer, dar sentimento às coisas, fazer sentido. A palavra nuvem chove. A palavra triste chora. A palavra sono dorme. A palavra tempo passa. A palavra fogo queima. A palavra faca corta. A palavra carro corre. A palavra “palavra” diz. O que quer.\n\nE nunca desdiz depois. As palavras tem corpo e alma, mas são diferentes das pessoas em vários pontos. As palavras dizem o que querem, está dito, e pronto.\n\n**FALCÃO, A. Pequeno dicionário de palavras ao vento. São Paulo: Salamandra, 2013 (adaptado).**",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Tematiza o fazer poético, como em \"Os poetas classificam as palavras pela alma\"."
+      },
+      {
+        "letter": "B",
+        "text": "Utiliza o recurso expressivo da metáfora, como em \"As palavras têm corpo e alma\"."
+      },
+      {
+        "letter": "C",
+        "text": "Valoriza a gramática da língua, como em \"substantivo, adjetivo, verbo, advérbio, conjunção\"."
+      },
+      {
+        "letter": "D",
+        "text": "Estabelece comparações, como em \"As palavras têm corpo e alma, mas são diferentes das pessoas\"."
+      },
+      {
+        "letter": "E",
+        "text": "Apresenta informações pertinentes acerca do conceito de \"palavra\", como em \"As gramáticas classificam as palavras\"."
+      }
+    ],
+    "correctOption": "B",
+    "chosen": "B",
+    "referenciaV1": {
+      "resultado": "correto",
+      "explicacao": {
+        "titulo": "O uso da linguagem figurada",
+        "conteudo": "A alternativa correta é a B porque o texto utiliza a metáfora ao atribuir características humanas (corpo e alma) às palavras. O autor explora a subjetividade e a expressividade da linguagem, indo além da classificação gramatical técnica para mostrar como as palavras ganham vida e sentido através da poesia."
+      },
+      "analiseAluno": {
+        "alternativa": "B",
+        "conteudo": "Parabéns! Você identificou corretamente que o texto se baseia no uso de metáforas para personificar as palavras. As outras alternativas não são adequadas porque o texto, na verdade, contrapõe a visão técnica da gramática (citada apenas como um contraponto inicial) à visão poética, que é o foco central da obra."
+      },
+      "contextualizacao": {
+        "titulo": "Linguagem denotativa vs. conotativa",
+        "conteudo": "Na língua portuguesa, distinguimos a linguagem denotativa (sentido literal, dicionarizado) da conotativa (sentido figurado, subjetivo). O texto de Adriana Falcão é um excelente exemplo de como a literatura utiliza a conotação para ampliar os significados das palavras, permitindo que elas 'chorem', 'durmam' ou 'queimem', criando imagens sensoriais que a gramática normativa, por si só, não alcançaria."
+      },
+      "recomendacoes": [
+        "Estude as figuras de linguagem, com foco especial em metáfora e personificação (ou prosopopeia).",
+        "Diferencie linguagem denotativa e conotativa em textos literários.",
+        "Analise como a função poética da linguagem prioriza a forma e a expressividade da mensagem.",
+        "Leia outros textos que exploram a metalinguagem (textos que falam sobre o próprio fazer literário)."
+      ],
+      "materiais": []
+    }
+  },
+  {
+    "id": "enem2022-98",
+    "tag": "texto:ciencias-natureza",
+    "area": "ciencias-natureza",
+    "source": "ENEM 2022",
+    "statement": "A Agência Nacional de Vigilância Sanitária (Anvisa) aprovou um produto de terapia gênica no país, indicado para o tratamento da distrofia hereditária da retina. O procedimento é recomendado para crianças acima de 12 meses e adultos com perda de visão causada pela mutação do gene humano RPE65. O produto, elaborado por engenharia genética, é composto por um vírus, no qual foi inserida uma cópia do gene normal humano RPE65 para corrigir o funcionamento das células da retina.\n\nANVISA. Disponível em: www.gov.br/anvisa. Acesso em: 4 dez. 2021 (adaptado)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Correção do código genético para a tradução da proteína."
+      },
+      {
+        "letter": "B",
+        "text": "Alteração do RNA ribossômico ligado à síntese da proteína."
+      },
+      {
+        "letter": "C",
+        "text": "Produção de mutações benéficas para a correção do problema."
+      },
+      {
+        "letter": "D",
+        "text": "Liberação imediata da proteína normal na região ocular humana."
+      },
+      {
+        "letter": "E",
+        "text": "Expressão do gene responsável pela produção da enzima normal."
+      }
+    ],
+    "correctOption": "E",
+    "chosen": "A",
+    "referenciaV1": null
+  },
+  {
+    "id": "enem2022-99",
+    "tag": "texto:ciencias-natureza",
+    "area": "ciencias-natureza",
+    "source": "ENEM 2022",
+    "statement": "A extinção de espécies é uma ameaça real que afeta diversas regiões do país. A introdução de espécies exóticas pode ser considerada um fator maximizador desse processo. A jaqueira (_Artocarpus heterophyllus_), por exemplo, é uma árvore originária da Índia e de regiões do Sudeste Asiático que foi introduzida ainda na era colonial e se aclimatou muito bem em praticamente todo o território nacional.",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Ocupam áreas de vegetação nativa e substituem parcialmente a flora original."
+      },
+      {
+        "letter": "B",
+        "text": "Estimulam a competição por seus frutos entre animais típicos da região e eliminam as espécies perdedoras."
+      },
+      {
+        "letter": "C",
+        "text": "Alteram os nichos e aumentam o número de possibilidades de relações entre os seres vivos daquele ambiente."
+      },
+      {
+        "letter": "D",
+        "text": "Apresentam alta taxa de reprodução e se mantêm com um número de indivíduos superior à capacidade suporte do ambiente."
+      },
+      {
+        "letter": "E",
+        "text": "Diminuem a relação de competição entre os polinizadores e facilitam a ação de dispersores de sementes de espécies nativas."
+      }
+    ],
+    "correctOption": "A",
+    "chosen": "B",
+    "referenciaV1": null
+  },
+  {
+    "id": "enem2022-142",
+    "tag": "texto:matematica",
+    "area": "matematica",
+    "source": "ENEM 2022",
+    "statement": "Uma montadora de automóveis divulgou que oferta a seus clientes mais de 1 000 configurações diferentes de carro, variando o modelo, a motorização, os opcionais e a cor do veículo. Atualmente, ela oferece 7 modelos de carros com 2 tipos de motores: 1.0 e 1.6. Já em relação aos opcionais, existem 3 escolhas possíveis: central multimídia, rodas de liga leve e bancos de couro, podendo o cliente optar por incluir um, dois, três ou nenhum dos opcionais disponíveis.",
+    "options": [
+      {
+        "letter": "A",
+        "text": "8."
+      },
+      {
+        "letter": "B",
+        "text": "9."
+      },
+      {
+        "letter": "C",
+        "text": "11."
+      },
+      {
+        "letter": "D",
+        "text": "18."
+      },
+      {
+        "letter": "E",
+        "text": "24."
+      }
+    ],
+    "correctOption": "B",
+    "chosen": "A",
+    "referenciaV1": null
+  },
+  {
+    "id": "enem2022-145",
+    "tag": "texto:matematica",
+    "area": "matematica",
+    "source": "ENEM 2022",
+    "statement": "O pacote básico de um jogo para smartphone, que é vendido a R$ 50,00, contém 2 000 gemas e 100 000 moedas de ouro, que são itens utilizáveis nesse jogo.  \nA empresa que comercializa esse jogo decidiu criar um pacote especial que será vendido a R$ 100,00 e que se diferenciará do pacote básico por apresentar maiores quantidades de gemas e moedas de ouro. Para estimular as vendas desse novo pacote, a empresa decidiu inserir nele 6 000 gemas a mais, em relação ao que o cliente teria caso optasse por comprar, com a mesma quantia, dois pacotes básicos.",
+    "options": [
+      {
+        "letter": "A",
+        "text": "50 000."
+      },
+      {
+        "letter": "B",
+        "text": "100 000."
+      },
+      {
+        "letter": "C",
+        "text": "200 000."
+      },
+      {
+        "letter": "D",
+        "text": "300 000."
+      },
+      {
+        "letter": "E",
+        "text": "400 000."
+      }
+    ],
+    "correctOption": "E",
+    "chosen": "A",
+    "referenciaV1": null
+  }
+]

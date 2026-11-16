@@ -1,0 +1,500 @@
+{
+  "promptVersion": "v1",
+  "model": "gemini-3.1-flash-lite",
+  "generatedAt": "2026-11-16T16:33:21.493Z",
+  "cases": [
+    {
+      "id": "q1",
+      "area": "linguagens",
+      "correctOption": "B",
+      "chosen": "A",
+      "ok": true,
+      "ms": 11531,
+      "usage": {
+        "promptTokenCount": 965,
+        "candidatesTokenCount": 469,
+        "totalTokenCount": 1434,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 965
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "O Estilo Distintivo de El Greco",
+          "conteudo": "A obra 'Laocoonte' de El Greco é um exemplo clássico do Maneirismo. O artista é reconhecido por alongar as figuras humanas, conferindo-lhes uma aparência espiritualizada e dramática, que se afasta das proporções realistas e equilibradas do Renascimento. Essa distorção intencional das formas e o uso de cores expressivas são as marcas registradas do seu estilo, focadas mais na emoção e na tensão do que na representação fiel da anatomia."
+        },
+        "analiseAluno": {
+          "alternativa": "A",
+          "conteudo": "Você apontou a nudez masculina, que de fato está presente na obra. No entanto, a nudez era um elemento comum em muitas pinturas da época e não define a singularidade da obra de El Greco. O aspecto mais marcante e inovador, que diferencia este quadro de outros artistas do período, é justamente a forma peculiar como ele distorce o corpo humano, alongando-o para intensificar a carga dramática da cena."
+        },
+        "contextualizacao": {
+          "titulo": "O Maneirismo na Arte",
+          "conteudo": "O Maneirismo surgiu no final do Renascimento como uma reação aos ideais de harmonia e perfeição. Os artistas maneiristas passaram a valorizar a subjetividade, a complexidade e a distorção. El Greco, embora tenha atuado na Espanha, foi um dos maiores expoentes desse movimento, utilizando figuras alongadas e composições dinâmicas para transmitir sentimentos intensos e uma visão mística da realidade."
+        },
+        "recomendacoes": [
+          "Pesquise sobre as principais características do movimento artístico Maneirismo.",
+          "Compare obras do Renascimento (como as de Michelangelo) com obras de El Greco para notar as diferenças na proporção humana.",
+          "Estude a biografia de El Greco e como sua formação influenciou seu estilo único.",
+          "Analise o conceito de 'expressividade' na arte em oposição ao 'realismo'."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [],
+        "distratoresAusentes": [
+          "A",
+          "C",
+          "D",
+          "E"
+        ],
+        "autorSemNome": 0,
+        "avisouFaltaDeComando": false
+      }
+    },
+    {
+      "id": "q2",
+      "area": "linguagens",
+      "correctOption": "A",
+      "chosen": "B",
+      "ok": true,
+      "ms": 21479,
+      "usage": {
+        "promptTokenCount": 1002,
+        "candidatesTokenCount": 481,
+        "totalTokenCount": 1483,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1002
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "O realismo trágico dos retirantes",
+          "conteudo": "A alternativa correta é a A porque o texto de José Américo de Almeida utiliza uma linguagem visceral e descritiva para retratar a miséria extrema dos retirantes. Ao descrevê-los como 'esqueletos redivivos', 'fantasmas estropiados' e mencionar a 'magreira cômica', o autor constrói um retrato cru e impactante da condição humana degradada pela seca, focando na materialidade do sofrimento físico e na desumanização causada pela fome."
+        },
+        "analiseAluno": {
+          "alternativa": "B",
+          "conteudo": "Você escolheu a alternativa B, mas o texto não busca a indefinição dos espaços para generalizar; pelo contrário, ele é muito específico ao situar o drama na seca de 1898 e descrever detalhadamente os efeitos físicos da fome nos personagens. O foco do autor é justamente tornar a cena o mais real e palpável possível, evitando abstrações para que o leitor sinta o peso da tragédia vivida por aqueles retirantes."
+        },
+        "contextualizacao": {
+          "titulo": "O Romance de 30 e a temática regionalista",
+          "conteudo": "O trecho pertence à obra 'A Bagaceira', marco inicial do Romance de 30 no Brasil. Esse movimento literário caracterizou-se pelo regionalismo crítico, em que autores nordestinos passaram a denunciar as desigualdades sociais, a exploração do trabalho e os efeitos devastadores das secas na região. A linguagem é marcada pelo realismo, muitas vezes beirando o naturalismo, para expor as feridas sociais do país."
+        },
+        "recomendacoes": [
+          "Estude as características do Romance de 30 na literatura brasileira.",
+          "Pesquise sobre o conceito de regionalismo e como ele se manifesta na obra de José Américo de Almeida.",
+          "Analise a diferença entre a descrição realista e a idealização romântica em textos literários.",
+          "Leia sobre o contexto histórico das secas no Nordeste e seu impacto na literatura."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [
+          "B"
+        ],
+        "distratoresAusentes": [
+          "C",
+          "D",
+          "E"
+        ],
+        "autorSemNome": 1,
+        "avisouFaltaDeComando": false
+      }
+    },
+    {
+      "id": "q3",
+      "area": "ciencias-humanas",
+      "correctOption": "A",
+      "chosen": "B",
+      "ok": true,
+      "ms": 2394,
+      "usage": {
+        "promptTokenCount": 800,
+        "candidatesTokenCount": 436,
+        "totalTokenCount": 1236,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 800
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "A persistência do racismo na sociedade",
+          "conteudo": "O texto de Carolina Maria de Jesus denuncia a violência policial contra pessoas negras e a permanência de práticas que remetem ao período da escravidão. O conceito de racismo estrutural explica como o preconceito está enraizado nas instituições e nas relações sociais, perpetuando desigualdades e violências contra a população negra, mesmo após a abolição legal da escravidão."
+        },
+        "analiseAluno": {
+          "alternativa": "B",
+          "conteudo": "Você escolheu 'Desemprego latente', mas o relato foca na violência física e na discriminação racial sofrida pelo homem negro. O texto não trata de questões econômicas ou de mercado de trabalho, mas sim da persistência de uma mentalidade escravocrata e do racismo que marginaliza e violenta indivíduos negros na sociedade brasileira."
+        },
+        "contextualizacao": {
+          "titulo": "Racismo Estrutural no Brasil",
+          "conteudo": "O racismo estrutural refere-se a um sistema de opressão que não depende apenas de atos individuais de preconceito, mas está presente na estrutura da sociedade, nas leis, na cultura e nas instituições. No Brasil, esse fenômeno é herança direta do longo período de escravidão, que criou hierarquias sociais baseadas na cor da pele, cujos efeitos ainda são sentidos na desigualdade de acesso a direitos, segurança e oportunidades."
+        },
+        "recomendacoes": [
+          "Estude o conceito de racismo estrutural proposto por autores como Silvio Almeida.",
+          "Pesquise sobre a obra 'Quarto de Despejo' e o contexto histórico da vida de Carolina Maria de Jesus.",
+          "Analise o impacto do período escravocrata na formação das desigualdades sociais brasileiras contemporâneas.",
+          "Reflita sobre o papel das instituições de segurança pública na manutenção de desigualdades raciais."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [],
+        "distratoresAusentes": [
+          "B",
+          "C",
+          "D",
+          "E"
+        ],
+        "autorSemNome": 0,
+        "avisouFaltaDeComando": null
+      }
+    },
+    {
+      "id": "q4",
+      "area": "linguagens",
+      "correctOption": "E",
+      "chosen": "A",
+      "ok": true,
+      "ms": 3609,
+      "usage": {
+        "promptTokenCount": 1006,
+        "candidatesTokenCount": 431,
+        "totalTokenCount": 1437,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1006
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "O uso de metáforas no texto",
+          "conteudo": "A alternativa correta é a E porque o autor utiliza a metáfora 'a vida engata uma primeira e sai em disparada' para comparar a velocidade da vida moderna com a condução de um veículo. Essa figura de linguagem é fundamental para ilustrar a pressa e a falta de controle que o autor critica ao longo do texto."
+        },
+        "analiseAluno": {
+          "alternativa": "A",
+          "conteudo": "Você escolheu a alternativa A, mas o texto não apresenta uma impessoalização. Pelo contrário, o autor utiliza a primeira pessoa do plural ('caímos', 'temos', 'esquecemos'), o que aproxima o leitor e cria uma sensação de identificação coletiva com o problema da urgência emocional. Para evitar esse erro, observe sempre se o autor se inclui no discurso através dos verbos e pronomes."
+        },
+        "contextualizacao": {
+          "titulo": "Figuras de linguagem e recursos expressivos",
+          "conteudo": "As figuras de linguagem, como a metáfora, são recursos expressivos que conferem novos significados às palavras, indo além do sentido literal. Elas são muito utilizadas em textos literários e crônicas para tornar a argumentação mais persuasiva, poética ou visual, ajudando o leitor a compreender conceitos abstratos através de imagens concretas."
+        },
+        "recomendacoes": [
+          "Estude as principais figuras de linguagem: metáfora, comparação, hipérbole e metonímia.",
+          "Pratique a identificação de marcas de pessoa (primeira, segunda e terceira pessoa) em textos argumentativos.",
+          "Leia crônicas contemporâneas para observar como autores utilizam metáforas para discutir temas do cotidiano.",
+          "Analise como a escolha de palavras (vocabulário) contribui para a construção do tom de um texto."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [
+          "A"
+        ],
+        "distratoresAusentes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "autorSemNome": 4,
+        "avisouFaltaDeComando": null
+      }
+    },
+    {
+      "id": "q5",
+      "area": "linguagens",
+      "correctOption": "B",
+      "chosen": "A",
+      "ok": true,
+      "ms": 5598,
+      "usage": {
+        "promptTokenCount": 1046,
+        "candidatesTokenCount": 466,
+        "totalTokenCount": 1512,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1046
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "Crítica à contradição moral",
+          "conteudo": "A alternativa correta é a B porque o texto utiliza argumentos morais e religiosos para expor a contradição de se defender a escravidão em pleno século XIX. A autora questiona como pessoas que se dizem cristãs ou cívicas podem sustentar um sistema que, segundo ela, é um 'cancro' e uma 'mentira abominável', evidenciando a hipocrisia de quem mantém o regime escravocrata enquanto professa valores de liberdade e fé."
+        },
+        "analiseAluno": {
+          "alternativa": "A",
+          "conteudo": "Você escolheu a alternativa A, mas o texto não foca na imposição de crenças aos escravizados. Na verdade, a autora utiliza a religião como uma ferramenta argumentativa para confrontar os próprios defensores da escravidão, questionando como eles conciliam a fé cristã com a prática de escravizar seres humanos. O foco é a incoerência ética dos proprietários, e não o processo de catequização dos escravos."
+        },
+        "contextualizacao": {
+          "titulo": "Literatura Abolicionista Brasileira",
+          "conteudo": "O texto pertence a Maria Firmina dos Reis, uma das vozes pioneiras da literatura abolicionista no Brasil. No século XIX, o debate sobre a abolição da escravatura era central, e intelectuais utilizavam a literatura para denunciar a desumanização do sistema escravista, recorrendo a argumentos morais, religiosos e econômicos para sensibilizar a sociedade da época."
+        },
+        "recomendacoes": [
+          "Estude o contexto histórico e social do abolicionismo no Brasil no século XIX.",
+          "Pesquise sobre a obra de Maria Firmina dos Reis e sua importância para a literatura brasileira.",
+          "Pratique a identificação de teses e argumentos em textos dissertativos e literários.",
+          "Analise como a religião foi utilizada tanto para justificar quanto para criticar a escravidão na história brasileira."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [
+          "A"
+        ],
+        "distratoresAusentes": [
+          "C",
+          "D",
+          "E"
+        ],
+        "autorSemNome": 2,
+        "avisouFaltaDeComando": null
+      }
+    },
+    {
+      "id": "q6",
+      "area": "linguagens",
+      "correctOption": "B",
+      "chosen": "B",
+      "ok": true,
+      "ms": 3666,
+      "usage": {
+        "promptTokenCount": 1011,
+        "candidatesTokenCount": 424,
+        "totalTokenCount": 1435,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 1011
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "correto",
+        "explicacao": {
+          "titulo": "A força da metáfora no texto",
+          "conteudo": "A alternativa correta é a B porque o texto utiliza a metáfora para atribuir características humanas (corpo e alma) às palavras, permitindo que elas 'chorem', 'durmam' ou 'queimem'. Esse recurso é central para a construção do sentido poético, diferenciando a visão técnica da gramática da visão sensível do poeta."
+        },
+        "analiseAluno": {
+          "alternativa": "B",
+          "conteudo": "Parabéns! Você identificou corretamente que o texto se apoia na metáfora para dar vida às palavras. As outras alternativas, como a C e a E, focam na classificação gramatical, que é justamente o que o autor contrapõe ao seu fazer poético, enquanto a A e a D apontam aspectos presentes, mas que não definem a essência expressiva do texto como a metáfora faz."
+        },
+        "contextualizacao": {
+          "titulo": "Linguagem denotativa vs. conotativa",
+          "conteudo": "Na língua portuguesa, distinguimos a linguagem denotativa (sentido literal, de dicionário) da conotativa (sentido figurado, subjetivo). A gramática normativa organiza a língua de forma denotativa, enquanto a literatura, especialmente a poesia, explora a conotação e figuras de linguagem, como a metáfora, para criar novas camadas de significado e emoção."
+        },
+        "recomendacoes": [
+          "Estude as principais figuras de linguagem: metáfora, metonímia e personificação.",
+          "Pesquise sobre a diferença entre linguagem denotativa e conotativa.",
+          "Leia textos de autores que exploram a metalinguagem (poemas sobre o próprio fazer poético).",
+          "Pratique a identificação de recursos expressivos em textos literários."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [
+          "A",
+          "C",
+          "E"
+        ],
+        "distratoresAusentes": [
+          "D"
+        ],
+        "autorSemNome": 1,
+        "avisouFaltaDeComando": false
+      }
+    },
+    {
+      "id": "enem2022-98",
+      "area": "ciencias-natureza",
+      "correctOption": "E",
+      "chosen": "A",
+      "ok": false,
+      "error": "TutorUnavailableError: O Gemini está indisponível no momento.",
+      "ms": 2548,
+      "usage": {}
+    },
+    {
+      "id": "enem2022-99",
+      "area": "ciencias-natureza",
+      "correctOption": "A",
+      "chosen": "B",
+      "ok": true,
+      "ms": 6811,
+      "usage": {
+        "promptTokenCount": 831,
+        "candidatesTokenCount": 414,
+        "totalTokenCount": 1245,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 831
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "Impacto de Espécies Exóticas Invasoras",
+          "conteudo": "Espécies exóticas, como a jaqueira, ao se aclimatarem bem em um novo ambiente, frequentemente tornam-se invasoras. Elas competem por recursos essenciais (luz, água, nutrientes e espaço) com as espécies nativas, ocupando o nicho ecológico destas e levando à redução ou substituição da flora original, o que diminui a biodiversidade local."
+        },
+        "analiseAluno": {
+          "alternativa": "B",
+          "conteudo": "Você escolheu a alternativa B, focada na competição por frutos. Embora a competição ocorra, o principal problema das espécies exóticas invasoras, como a jaqueira, é a ocupação física do espaço e a alteração da estrutura da vegetação nativa. A alternativa A descreve com maior precisão o impacto ecológico direto e abrangente dessas espécies no ecossistema."
+        },
+        "contextualizacao": {
+          "titulo": "Espécies Exóticas e Invasoras",
+          "conteudo": "Uma espécie exótica é aquela introduzida pelo ser humano em um ambiente fora de sua área de distribuição natural. Quando essa espécie consegue se estabelecer, reproduzir e causar danos ao ecossistema, economia ou saúde, ela é classificada como invasora. A falta de predadores naturais e competidores específicos no novo ambiente permite que essas espécies se proliferem descontroladamente."
+        },
+        "recomendacoes": [
+          "Estude o conceito de nicho ecológico e habitat.",
+          "Pesquise sobre os impactos das espécies invasoras na biodiversidade brasileira.",
+          "Entenda a diferença entre espécies nativas, endêmicas e exóticas.",
+          "Analise como a introdução de espécies pode desequilibrar cadeias alimentares."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [
+          "B"
+        ],
+        "distratoresAusentes": [
+          "C",
+          "D",
+          "E"
+        ],
+        "autorSemNome": 0,
+        "avisouFaltaDeComando": false
+      }
+    },
+    {
+      "id": "enem2022-142",
+      "area": "matematica",
+      "correctOption": "B",
+      "chosen": "A",
+      "ok": true,
+      "ms": 9184,
+      "usage": {
+        "promptTokenCount": 756,
+        "candidatesTokenCount": 509,
+        "totalTokenCount": 1265,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 756
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "Princípio Fundamental da Contagem",
+          "conteudo": "Para encontrar o total de configurações, multiplicamos as possibilidades de cada categoria. Temos 7 modelos e 2 tipos de motor (7 x 2 = 14). Para os opcionais, cada um dos 3 itens pode ser escolhido ou não (2 opções por item: sim ou não), totalizando 2 x 2 x 2 = 8 combinações de opcionais. Multiplicando tudo: 7 x 2 x 8 = 112. Como o enunciado menciona 'mais de 1 000', e a pergunta pede o número de cores, chamamos de 'x'. Assim, 112 * x > 1 000. Dividindo 1 000 por 112, obtemos aproximadamente 8,9. Portanto, o menor número inteiro de cores para superar 1 000 é 9."
+        },
+        "analiseAluno": {
+          "alternativa": "A",
+          "conteudo": "Você escolheu a alternativa 8, mas parece ter esquecido que o número de cores precisa ser um valor que, ao multiplicar pelas outras combinações, ultrapasse 1 000. Ao usar 8, o total seria 896, o que ainda é menor que o valor divulgado pela montadora. Lembre-se de sempre verificar se o resultado final atende a todas as condições do problema."
+        },
+        "contextualizacao": {
+          "titulo": "Análise Combinatória",
+          "conteudo": "Este problema utiliza o Princípio Fundamental da Contagem, que nos permite calcular o número total de possibilidades de um evento composto por várias etapas independentes. Quando temos escolhas binárias (como incluir ou não um opcional), usamos potências de base 2 para determinar as combinações possíveis."
+        },
+        "recomendacoes": [
+          "Estude o Princípio Fundamental da Contagem (Princípio Multiplicativo).",
+          "Pratique problemas de contagem que envolvem subconjuntos (como o caso dos opcionais).",
+          "Revise como interpretar enunciados que utilizam desigualdades (maior que, menor que).",
+          "Treine a montagem de árvores de possibilidades para problemas menores."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [],
+        "distratoresAusentes": [
+          "A",
+          "C",
+          "D",
+          "E"
+        ],
+        "autorSemNome": 0,
+        "avisouFaltaDeComando": false
+      }
+    },
+    {
+      "id": "enem2022-145",
+      "area": "matematica",
+      "correctOption": "E",
+      "chosen": "A",
+      "ok": true,
+      "ms": 9243,
+      "usage": {
+        "promptTokenCount": 817,
+        "candidatesTokenCount": 653,
+        "totalTokenCount": 1470,
+        "promptTokensDetails": [
+          {
+            "modality": "TEXT",
+            "tokenCount": 817
+          }
+        ],
+        "serviceTier": "standard"
+      },
+      "feedback": {
+        "resultado": "incorreto",
+        "explicacao": {
+          "titulo": "Cálculo do pacote especial",
+          "conteudo": "Para resolver, primeiro calculamos quanto o cliente ganharia com dois pacotes básicos (R$ 100,00): 2 x 2.000 gemas = 4.000 gemas e 2 x 100.000 moedas = 200.000 moedas. O enunciado diz que o pacote especial tem 6.000 gemas a mais que essa referência, totalizando 10.000 gemas (4.000 + 6.000). Como o pacote especial custa o dobro do básico, a proporção de moedas deve seguir a mesma lógica de escala: se o pacote básico de R$ 50,00 traz 100.000 moedas, o pacote de R$ 100,00 deveria trazer 200.000 moedas. Porém, a questão pede o total de moedas considerando a bonificação proporcional ao aumento de gemas. Como o pacote especial tem 10.000 gemas e o básico tem 2.000, o fator de escala é 5 (10.000 / 2.000 = 5). Aplicando esse mesmo fator às moedas: 5 x 100.000 = 500.000. Contudo, analisando a estrutura de bonificação, o pacote especial oferece 400.000 moedas."
+        },
+        "analiseAluno": {
+          "alternativa": "A",
+          "conteudo": "Você escolheu a alternativa A, mas parece ter se confundido com os valores iniciais. Ao comparar o pacote especial com dois pacotes básicos, lembre-se de que o pacote especial custa R$ 100,00, logo, ele deve ser comparado com o dobro do conteúdo do pacote de R$ 50,00. Tente sempre organizar os dados em uma tabela para visualizar melhor a proporção entre o preço e a quantidade de itens."
+        },
+        "contextualizacao": {
+          "titulo": "Razão e Proporção",
+          "conteudo": "Problemas de economia e vendas frequentemente utilizam o conceito de proporcionalidade. Quando comparamos pacotes de produtos, estamos lidando com grandezas diretamente proporcionais, onde o aumento no preço ou na quantidade de um item deve ser acompanhado por um ajuste equivalente nos outros itens para manter a lógica do custo-benefício."
+        },
+        "recomendacoes": [
+          "Pratique exercícios de regra de três simples e composta.",
+          "Revise o conceito de grandezas diretamente e inversamente proporcionais.",
+          "Treine a interpretação de textos em problemas matemáticos para identificar as variáveis corretamente.",
+          "Aprenda a montar tabelas comparativas para organizar dados de problemas de múltipla escolha."
+        ],
+        "materiais": []
+      },
+      "checks": {
+        "distratoresCitados": [
+          "A"
+        ],
+        "distratoresAusentes": [
+          "B",
+          "C",
+          "D"
+        ],
+        "autorSemNome": 0,
+        "avisouFaltaDeComando": false
+      }
+    }
+  ]
+}

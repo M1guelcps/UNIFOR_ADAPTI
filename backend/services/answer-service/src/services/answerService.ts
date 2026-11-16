@@ -1,4 +1,7 @@
+import { requestTutorFeedback } from "../lib/aiTutorClient.js";
 import { prisma } from "../lib/prisma.js";
+import { AnswerNotFoundError } from "../lib/tutorErrors.js";
+import { toTutorRequest } from "./tutorRequestMapper.js";
 
 export class AnswerService {
   static async submitAnswer(questId: string, userId: string, selectedOption: string) {
@@ -31,7 +34,35 @@ export class AnswerService {
       ...(!isCorrect ? { correctOption: quest.correctOption } : {}),
     };
   }
-  
+
+  /**
+   * Explicação pedagógica de uma resposta já registrada, gerada pelo AI Tutor Service.
+   * A correção continua sendo a de submitAnswer (isCorrect/gabarito do banco): o tutor só explica.
+   * Filtra por userId para que um aluno nunca acesse (nem descubra) a resposta de outro.
+   *
+   * @throws AnswerNotFoundError | TutorQuestionInvalidError | TutorRateLimitedError | TutorUnavailableError
+   */
+  static async getTutorFeedback(answerId: string, userId: string) {
+    const answer = await prisma.answer.findFirst({
+      where: { id: answerId, userId },
+      include: { quest: true },
+    });
+
+    if (!answer) {
+      throw new AnswerNotFoundError();
+    }
+
+    const payload = toTutorRequest(answer.quest, answer.selected);
+    const { feedback, cached } = await requestTutorFeedback(payload);
+
+    return {
+      answerId: answer.id,
+      isCorrect: answer.isCorrect,
+      cached,
+      tutor: feedback,
+    };
+  }
+
   static async getStudentMetrics(userId: string) {
     // Busca todas as respostas do aluno e inclui os dados da questão respondida
     const answers = await prisma.answer.findMany({

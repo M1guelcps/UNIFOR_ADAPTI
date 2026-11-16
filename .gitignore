@@ -1,4 +1,3 @@
-
 # Dependências
 **/node_modules/
 
@@ -13,7 +12,11 @@ npm-debug.log*
 .DS_Store
 Thumbs.db
 
+# Segredos: cada pessoa cria o seu .env a partir do .env.example do serviço.
+# Vale para QUALQUER pasta (não só a raiz): o deploy lê as variáveis de deploy/env/ e do ambiente.
+.env
+.env.*
+!.env.example
+
 # Configuração privada da implantação
 /deploy/env/
-/.env
-EOF
