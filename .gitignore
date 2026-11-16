@@ -1,0 +1,8 @@
+# Dependências e artefatos de build
+node_modules/
+dist/
+
+# Segredos: cada pessoa cria o seu .env a partir do .env.example do serviço
+.env
+.env.*
+!.env.example
