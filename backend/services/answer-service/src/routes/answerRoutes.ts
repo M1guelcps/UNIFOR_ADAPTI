@@ -9,6 +9,8 @@ const router = Router();
 router.get("/me", authMiddleware, AnswerController.getMetrics);
 // Rota para o aluno enviar a resposta
 router.post("/", authMiddleware, AnswerController.submit);
+// Aluno pede a explicação do tutor (IA) para uma resposta sua; só o dono da resposta acessa
+router.post("/:answerId/tutor", authMiddleware, AnswerController.tutor);
 
 // Professor: desempenho dos alunos nas questões que ele criou
 router.get("/teacher/stats", authMiddleware, requireRole("TEACHER", "ADMIN"), AnswerController.getTeacherStats);
