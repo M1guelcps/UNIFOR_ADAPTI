@@ -11,7 +11,7 @@
  */
 import "dotenv/config";
 import { randomUUID } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { GoogleGenAI } from "@google/genai";
@@ -142,7 +142,11 @@ async function runEvaluation(only: string[]): Promise<void> {
   const results: CaseResult[] = [];
   for (const question of questions) {
     // Serviço novo por questão: repositório vazio, sem cache entre elas.
-    const service = new TutorService(new GeminiTutorModel({ client, model: modelName, timeoutMs }), new InMemoryFeedbackRepository());
+    // `log` mostra a latência de CADA tentativa (inclusive o 503 que foi repetido): separa lentidão do prompt de lentidão do Gemini.
+    const service = new TutorService(
+      new GeminiTutorModel({ client, model: modelName, timeoutMs, log: (line) => console.log(`    ${line}`) }),
+      new InMemoryFeedbackRepository()
+    );
     lastUsage = {};
     const started = Date.now();
     try {
@@ -168,9 +172,23 @@ async function runEvaluation(only: string[]): Promise<void> {
     }
   }
 
-  const file: ResultFile = { promptVersion: PROMPT_VERSION, model: modelName, generatedAt: new Date().toISOString(), cases: results };
   mkdirSync(resultsDir, { recursive: true });
   const target = resolve(resultsDir, `resultados-${PROMPT_VERSION}.json`);
+
+  // Rodada parcial (ids na linha de comando): funde no arquivo existente. Um resultado bom nunca é trocado
+  // por uma falha (o Gemini oscila); só é substituído por outro resultado bom ou quando antes também falhou.
+  let cases = results;
+  if (only.length > 0 && existsSync(target)) {
+    const previous = (JSON.parse(readFileSync(target, "utf8")) as ResultFile).cases;
+    const previousById = new Map(previous.map((c) => [c.id, c]));
+    const rerun = new Map(results.map((r) => [r.id, r]));
+    const merged = previous.map((old) => {
+      const fresh = rerun.get(old.id);
+      return fresh && (fresh.ok || !old.ok) ? fresh : old;
+    });
+    cases = [...merged, ...results.filter((r) => !previousById.has(r.id))];
+  }
+  const file: ResultFile = { promptVersion: PROMPT_VERSION, model: modelName, generatedAt: new Date().toISOString(), cases };
   writeFileSync(target, JSON.stringify(file, null, 2));
 
   const ok = results.filter((r) => r.ok);
