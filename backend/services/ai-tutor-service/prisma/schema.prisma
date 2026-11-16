@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Cache das tutorias geradas pelo Gemini.
+// A explicação depende só do conteúdo da questão e da alternativa marcada, nunca de quem respondeu,
+// então a mesma linha atende todos os alunos e não guarda nenhum dado pessoal.
+model TutorFeedback {
+  id            String   @id @default(uuid())
+  // sha256 de PROMPT_VERSION + conteúdo da questão: muda sozinho se a questão for editada ou o prompt evoluir.
+  contentHash   String   @unique @db.VarChar(64)
+  // Só para rastreabilidade e depuração; não participa da chave do cache.
+  questaoId     String   @db.VarChar(64)
+  respostaAluno String   @db.VarChar(8)
+  feedback      Json
+  promptVersion String   @db.VarChar(32)
+  model         String   @db.VarChar(128)
+  createdAt     DateTime @default(now())
+
+  @@index([questaoId])
+}
