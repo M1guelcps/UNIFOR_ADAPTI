@@ -1,0 +1,19 @@
+cat > .gitignore <<'EOF'
+# Dependências
+**/node_modules/
+
+# Build
+**/dist/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Arquivos temporários
+.DS_Store
+Thumbs.db
+
+# Configuração privada da implantação
+/deploy/env/
+/.env
+EOF
